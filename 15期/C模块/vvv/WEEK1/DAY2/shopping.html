@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>珠峰培训</title>
+    <link rel="stylesheet" href="./node_modules/bootstrap/dist/css/bootstrap.css">
+</head>
+<body>
+<div id="app">
+    <div class="container">
+        <div class="row">
+            <table class="table table-bordered text-center ">
+                <caption class="h2 text-primary text-center">购物车</caption>
+                <tr>
+                    <td>全选
+                        <input type="checkbox" v-model="checkAll">
+                    </td>
+                    <td>商品</td>
+                    <td>单价</td>
+                    <td>数量</td>
+                    <td>小计</td>
+                    <td>操作</td>
+                </tr>
+                <tr v-for="a in products">
+                    <td>
+                        <input type="checkbox" v-model="a.isSelected">
+                    </td>
+                    <td>
+                        <img :src="a.productCover" :title="a.productName" alt="">
+                        {{a.productInfo}}
+                    </td>
+                    <td>
+                        {{a.productPrice}}
+                    </td>
+                    <td>
+                        <input type="number" min="0" v-model="a.productCount">
+                    </td>
+                    <td>
+                        {{a.productPrice*a.productCount | toFixed(2)}}
+                    </td>
+                    <td>
+                        <input type="button" class="btn-danger" value="删除" @click="remove(a)">
+                    </td>
+                </tr>
+                <tr>
+                    <td class="text-left" colspan="6">总价格：{{sum | toFixed(2)}}</td>
+                </tr>
+            </table>
+        </div>
+    </div>
+</div>
+<script src="./node_modules/vue/dist/vue.js"></script>
+<script src="node_modules/axios/dist/axios.js"></script>
+<script>
+    let vm = new Vue({
+        el: '#app',
+        filters: {
+            toFixed(inp, cam) {
+                return "￥" + inp.toFixed(cam)
+            }
+        },
+        data: {
+            products: []
+        },
+        created: function () {
+            axios.get("./carts.json")
+                .then(val => {
+                    this.products = val.data
+                }, err => {
+                    console.log(err)
+                })
+        },
+        methods:{
+          remove(c){
+              this.products=this.products.filter(item=>item!==c);
+          }
+        },
+        computed: {
+            sum() {
+                return this.products.reduce(function (prev, next) {
+                    if (!next.isSelected)return prev;
+                    return prev + next.productPrice * next.productCount;
+                }, 0)
+            },
+            checkAll:{
+                get(){
+                    return this.products.every(item=>item.isSelected)
+                },
+                set(val){
+                    this.products.forEach(item=>item.isSelected=val)
+                }
+            }
+        }
+    });
+</script>
+</body>

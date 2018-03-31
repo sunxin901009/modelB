@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>珠峰培训</title>
+</head>
+<body>
+<div id="app">
+    <!--小胡子语法 mousetache-->
+    <!--可以进行运算 还支持三元运算符-->
+    <!--不能用于标签行间属性或属性值-->
+    <!--v-model：双向数据绑定，-->
+    <input type="text" v-model="msg">{{msg}}
+
+<!--{{message+1}}-->
+</div>
+<script src="../../node_modules/vue/dist/vue.js"></script>
+<script>
+    //在vue中数据绑定经常使用双大括号语法；把vue中的data的值拿到DOM结构中；
+    let vm = new Vue({
+        el: '#app',//选择器
+        data: {
+            //属于挂载到vm的属性上，当改变vm的属性时，那么页面也会跟着发生变化；
+            //双向数据绑定的顶点
+            //MVVM   module  view  vm
+            //
+            msg:"hello word!"
+        }
+    });
+
+    let obj={},
+        temp={name:10};
+    Object.defineProperty(obj,"name",{
+        //定义属性：当获取name的属性值时触发get方法，当设置name的属性值时，触发set方法；
+        //defineProperty：给对象新增属性
+        //监听obj的name属性；获取就执行get，设置或修改就执行set；
+        get(){
+            return temp["name"]
+        },
+        set(){
+
+        }
+    })
+    input.addEventListener("input")
+</script>
+</body>

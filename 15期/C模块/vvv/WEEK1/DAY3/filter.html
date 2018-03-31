@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>珠峰培训</title>
+</head>
+<body>
+<div id="app">
+
+</div>
+<script src="./node_modules/vue/dist/vue.js"></script>
+<script>
+    //全局过滤器
+    //定义一个全局的过滤器myFilter;可以在各个vue模块中使用
+    //data是 | 前面的值，把数据重新进行组装，并且返回；
+    Vue.filter("myFilter",data=>"你"+data);
+    let vm = new Vue({
+        el: '#app',
+        data: {
+            a:"你很帅"
+        }
+    });
+</script>
+</body>

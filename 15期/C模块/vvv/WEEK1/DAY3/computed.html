@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>珠峰培训</title>
+</head>
+<body>
+<div id="app">
+    <input type="text" v-model="a">{{msg}}
+</div>
+<script src="./node_modules/vue/dist/vue.js"></script>
+<script>
+    let vm = new Vue({
+        el: '#app',
+        computed: {
+            //computed里面如果是函数只有get方法，需要return；如果是对象，有get和set方法
+            msg() {
+                //如果输入的长度大于5 显示有点多，如果输入长度小于3，显示有点少
+                //computed中的属性不支持异步
+                // setTimeout(()=>{
+                //
+                // },2000)
+                if (this.a.length > 5) return "输入多了";
+                if (this.a.length < 3) return "输入少了";
+            }
+        },
+        data: {
+            a: ""
+        }
+    });
+</script>
+</body>

@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>珠峰培训</title>
+</head>
+<body>
+<div id="app">
+    <!--<template v-if="flag">-->
+        <!--&lt;!&ndash;template是vue提供包裹元素的，在页面HTML不做任何显示的，模板&ndash;&gt;-->
+        <!--<div>1</div>-->
+        <!--<div>2</div>-->
+        <!--<div>3</div>-->
+        <!--<div>4</div>-->
+    <!--</template>-->
+    <!--<div v-else>5</div>-->
+    <button @click="flag=!flag">切换</button>
+    <!--template：不支持v-show-->
+    <!--template中如果发现切换的元素没有任何变化，那么DOM会利用上次的元素，需要一个key进行区分-->
+    <template v-if="flag">
+        <label>登录用户名</label>
+        <input type="text" key="2">
+    </template>
+    <template v-else>
+        <label>注册用户名</label>
+        <input type="text" key="3">
+    </template>
+</div>
+<script src="./node_modules/vue/dist/vue.js"></script>
+<script>
+    let vm = new Vue({
+        el: '#app',
+        data: {
+            flag: true
+        }
+    });
+</script>
+</body>

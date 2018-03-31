@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>珠峰培训</title>
+</head>
+<body>
+<div id="app">
+    <!--：style：动态绑定具体的样式，放对象和数组-->
+    <div style="color:rebeccapurple" :style="{background:'pink',fontSize:'50px'}">恍恍惚惚</div>
+</div>
+<script src="./node_modules/vue/dist/vue.js"></script>
+<script>
+    let vm = new Vue({
+        el: '#app',
+        data: {
+            class1:{fontSize:"50px"},
+            class2:{background:"pink"}
+        }
+    });
+</script>
+</body>

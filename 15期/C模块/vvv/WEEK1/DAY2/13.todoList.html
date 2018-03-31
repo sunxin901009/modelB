@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>珠峰培训</title>
+    <link rel="stylesheet" href="node_modules/bootstrap/dist/css/bootstrap.css">
+</head>
+<body>
+<div id="app">
+    <nav class="navbar navbar-inverse">
+        <div class="container-fluid">
+            <div class="navbar-header">
+                <a class="navbar-brand" href="#">
+                    todoList
+                </a>
+            </div>
+        </div>
+    </nav>
+    <div class="container">
+        <!--col:列 md:中屏  lg: 大屏   sm  -->
+        <!--bootstrap: 12列 有些框架是24列-->
+        <div class="row col-md-8 col-md-offset-2">
+            <div class="panel panel-warning">
+                <!-- Default panel contents -->
+                <div class="panel-heading">
+                   <h3 class="text-danger"> 亲~^_^你有几件事要完成</h3>
+                    <input type="text" class="form-control">
+                </div>
+                <div class="panel-body">
+                    <ul class="list-group">
+                        <li class="list-group-item"></li>
+                    </ul>
+                </div>
+                <div class="panel-footer">
+                    <ul class="nav nav-pills">
+                        <li role="presentation" class="active"><a href="#">全部</a></li>
+                        <li role="presentation"><a href="#">已完成</a></li>
+                        <li role="presentation"><a href="#">未完成</a></li>
+                    </ul>
+
+
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<script src="./node_modules/vue/dist/vue.js"></script>
+<script>
+    let vm = new Vue({
+        el: '#app',
+        data: {
+            todos:[{isSelected:false,title:"睡觉"},{isSelected:false,title:"吃饭"}]
+        }
+    });
+</script>
+</body>

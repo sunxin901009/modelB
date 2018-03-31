@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>珠峰培训</title>
+    <style>
+        .x{
+            background: lightcyan;
+            width: 300px;
+            height: 40px;
+            line-height: 40px;
+        }
+        .y{
+            font-size: 30px;
+        }
+        .z{
+            color: lightcoral;
+        }
+        .w{
+            background: lightgray;
+        }
+    </style>
+</head>
+<body>
+<div id="app">
+    <!--:class：动态绑定样式 可以写对象，如果属性名对应的属性值是true，当前样式起作用-->
+    <!--动态绑定的class和class类名相互之间不影响-->
+<!--<div class="x" :class="{x:false,y:true,z:false}">恍恍惚惚</div>-->
+<!--<div class="x" :class="[class1]">恍恍惚惚</div>-->
+    <div v-for="index in num" :class="{w:(index+1)%2}">{{index}}</div>
+</div>
+<script src="./node_modules/vue/dist/vue.js"></script>
+<script>
+    let vm = new Vue({
+        el: '#app',
+        data: {
+            class1:{y:true},
+            num:10
+        }
+    });
+</script>
+</body>

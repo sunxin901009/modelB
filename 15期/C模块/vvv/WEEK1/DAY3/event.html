@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>珠峰培训</title>
+    <style>
+        div{
+            width: 100px;
+            height: 100px;
+        }
+    </style>
+</head>
+<body>
+<div id="app">
+    <div @click="parent">parent
+        <div @click.self="son">son
+            <!--事件修饰符：.stop 阻止事件冒泡传播  .prevent：阻止事件默认行为 .once当前函数只执行一次  .self：只有自己才能触发这个事件行为的方法-->
+            <div @click="grandson">grandson</div>
+            <!--只有当按下enter键或键盘码时才触发fn-->
+            <input type="text" @keyup.left="fn">
+        </div>
+    </div>
+</div>
+<script src="./node_modules/vue/dist/vue.js"></script>
+<script>
+    let vm = new Vue({
+        el: '#app',
+        data: {},
+        methods:{
+            parent(){
+                alert("parent")
+            },
+            son(){
+                alert("son")
+            },
+            grandson(e){
+                // e.stopPropagation()
+                alert("trandson")
+            },
+            fn(){
+                console.log(1);
+            }
+        }
+    });
+</script>
+</body>

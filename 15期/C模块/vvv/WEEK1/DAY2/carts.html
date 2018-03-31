@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>珠峰培训</title>
+    <link rel="stylesheet" href="node_modules/bootstrap/dist/css/bootstrap.css">
+    <style>
+         tr td{
+            text-align: center;
+            vertical-align: middle;
+        }
+    </style>
+</head>
+<body>
+<div id="app">
+    <div class="container">
+        <div class="row">
+            <table class="table table-bordered table-hover">
+                <caption class="h2 text-primary text-center">珠峰购物车</caption>
+                <tr class="info">
+                    <td>
+                        全选<input type="checkbox" v-model="checkAll" @change="change">
+                    </td>
+                    <td>商品</td>
+                    <td>单价</td>
+                    <td>数量</td>
+                    <td>小计</td>
+                    <td>操作</td>
+                </tr>
+                <tr v-for="a in products">
+                    <td><input type="checkbox" v-model="a.isSelected" @change="changeone"></td>
+                    <td>
+                        <!--动态绑定数据v-bind：可以用：代替-->
+                        <img :src="a.productCover" alt="" :title="a.productName">
+                        {{a.productInfo}}
+                    </td>
+                    <td>
+                        {{a.productPrice}}
+                    </td>
+                    <td>
+                        <input type="number" v-model="a.productCount" min="0">
+                    </td>
+                    <td>
+                        {{a.productPrice*a.productCount | toFixed(2)}}
+                    </td>
+                    <td>
+                        <input type="button" value="删除" class="btn-danger" @click="remove(a)">
+                    </td>
+                </tr>
+                <tr class="info">
+                    <td colspan="6" class="text-left">总价格:{{sum()| toFixed(2)}}</td>
+                </tr>
+            </table>
+        </div>
+    </div>
+</div>
+<script src="./node_modules/vue/dist/vue.js"></script>
+<script src="./node_modules/axios/dist/axios.js"></script>
+<script>
+    let vm = new Vue({
+        el: '#app',
+        filters:{
+            //管道过滤器
+            //input：代表|前面的值 param是传进来的值
+            toFixed(input,param){
+                return "￥"+input.toFixed(param)
+            }
+        },
+        created:function () {
+            axios.get("./carts.json").then(val => {
+                this.products=val.data;
+                //循环每一数据进行判断，对checkAll进行修改；
+                this.changeone();
+            },err=>{
+                console.log(err);
+            })
+        },
+        methods:{
+            change(){
+                this.products.forEach(item=>item.isSelected=this.checkAll)
+            },
+            changeone(){
+                this.checkAll=this.products.every(item=>item.isSelected)
+            },
+            sum(){
+               return this.products.reduce(function (prev,next) {
+                   if(!next.isSelected)return prev;
+                    return prev+next.productPrice*next.productCount
+                },0)
+            },
+            remove(a){
+                this.products=this.products.filter(item=>item!==a);
+            }
+        },
+        data: {
+            products:[],
+            checkAll:false
+        }
+    });
+</script>
+</body>

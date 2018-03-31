@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>珠峰培训</title>
+</head>
+<body>
+<div id="app">
+    <input type="text" @keyup.enter="add" v-model="val">
+    <ul>
+        <li v-for="(a,index) in todo">
+            {{a}}
+            <button @click="delet(index)">删除</button>
+        </li>
+    </ul>
+</div>
+<script src="../../node_modules/vue/dist/vue.js"></script>
+<script>
+    let vm = new Vue({
+        el: '#app',
+        data: {
+            todo:[],
+            val:""
+        },
+        methods:{
+            add(){
+                this.todo.push(this.val);
+                this.val="";
+            },
+            delet(a){
+               this.todo=this.todo.filter((item,index)=>index!==a)
+                // this.todo.splice(a,1)
+            }
+        }
+    });
+</script>
+</body>

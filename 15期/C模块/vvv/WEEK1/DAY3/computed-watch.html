@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>珠峰培训</title>
+</head>
+<body>
+<div id="app">
+    <input type="text" v-model="a">{{fullName}}
+</div>
+<script src="./node_modules/vue/dist/vue.js"></script>
+<script>
+    let vm = new Vue({
+        el: '#app',
+        watch:{
+          a(newVal,oldVal){
+             this.fullName=this.first+newVal+this.last
+          }
+        },
+        data: {
+            a:"",
+            first:"珠峰",
+            last:"学校",
+            fullName:"珠峰学校"
+        }
+    });
+</script>
+</body>

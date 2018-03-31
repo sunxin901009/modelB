@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>珠峰培训</title>
+</head>
+<body>
+<div id="app">
+    <!--v-on：事件行为 属性值是绑定的方法；方法放在methods这个对象中-->
+    <!--v-on：可以用@进行替换-->
+    <!--<input type="text" v-on:keyup="fn">-->
+    <input type="text" @keyup="fn" v-model="val">
+</div>
+<script src="../../node_modules/vue/dist/vue.js"></script>
+<script>
+    let vm = new Vue({
+        el: '#app',
+        data: {
+            val:""
+        },
+        methods:{
+            //methods中方法名不能喝data中属性名相同；
+            fn(a){
+                //console.log(1);
+                //方法中的this指向vue的实例
+                //console.log(this.val);
+                //a事件对象,如果绑定时什么也不传，那么默认会给当前方法传进来一个事件对象，如果需要传参，fn的一个参数要用$event占位，第二个参数为传的参数。
+                console.log(a);
+            }
+        }
+    });
+</script>
+</body>

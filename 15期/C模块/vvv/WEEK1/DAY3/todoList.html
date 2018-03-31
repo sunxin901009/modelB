@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>珠峰培训</title>
+    <style>
+        .del {
+            text-decoration: line-through;
+            color: #ccc;
+        !important;
+        }
+    </style>
+    <link rel="stylesheet" href="node_modules/bootstrap/dist/css/bootstrap.css">
+</head>
+<body>
+<div id="app">
+    <nav class="navbar navbar-inverse">
+        <div class="container-fluid">
+            <div class="navbar-header">
+                <a class="navbar-brand" href="#">
+                    todoList
+                </a>
+            </div>
+        </div>
+    </nav>
+    <div class="container">
+        <!--col：列 md：中屏 8：占8个，共12个-->
+        <!--bootstrap：12列-->
+        <div class="row col-md-8 col-lg-offset-2">
+            <div class="panel panel-warning">
+                <div class="panel-heading">
+                    <h3 class="text-danger">
+                        亲(*￣︶￣)你有{{num}}件事要完成
+                    </h3>
+                    <input type="text" class="form-control" @keyup.enter="add" v-model="title">
+                </div>
+                <div class="panel-body">
+                    <ul class="list-group">
+                        <li class="list-group-item" v-for="(a,index) in show">
+                            <span :class="{del:a.isSelected}" @dblclick="flag=!flag" v-show="!flag">
+                                <input type="checkbox" v-model="a.isSelected">
+                                {{a.title}}
+                            </span>
+                            <input type="text" v-show="flag" v-model="a.title" @keyup.enter="flag=!flag">
+                            <button class="pull-right btn btn-danger btn-xs" @click="remove(a)">&bigotimes;</button>
+                        </li>
+                    </ul>
+                </div>
+                <div class="panel-footer">
+                    <ul class="nav nav-pills">
+                        <li role="presentation" :class="{active:hash=='/all'}"><a href="#/all">全部任务</a></li>
+                        <li role="presentation" :class="{active:hash=='/finish'}"><a href="#/finish">已完全</a></li>
+                        <li role="presentation" :class="{active:hash=='/unfinish'}"><a href="#/unfinish">未完成</a></li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<script src="./node_modules/vue/dist/vue.js"></script>
+<script src="todo.js"></script>
+
+</body>

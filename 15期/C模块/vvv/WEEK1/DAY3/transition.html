@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>珠峰培训</title>
+    <link rel="stylesheet" href="./node_modules/animate.css/animate.css">
+    <style>
+        .hh{
+            width: 100px;
+            height: 100px;
+            line-height: 100px;
+            text-align: center;
+            background: lightblue;
+        }
+        /*.my-enter-active{*/
+            /*!*动画进来开始的状态*!*/
+            /*opacity: 0;*/
+            /*width: 200px;*/
+            /*height: 200px;*/
+            /*background: lightcoral;*/
+            /*transition: all 1s linear*/
+        /*}*/
+        /*.my-enter-to{*/
+            /*!*动画进来结束的状态*!*/
+            /*opacity: 1;*/
+            /*width: 100px;*/
+            /*height: 100px;*/
+            /*background: lightblue;*/
+            /*transition: all 1s linear;*/
+        /*}*/
+        /*.my-leave-active{*/
+            /*!*离开时瞬间的状态*!*/
+            /*width: 200px;*/
+            /*height: 200px;*/
+            /*background: lightcoral;*/
+            /*transition: all 1s linear*/
+        /*}*/
+        /*.my-leave-to{*/
+            /*opacity: 0;*/
+            /*transition: all 1s linear*/
+        /*}*/
+    </style>
+</head>
+<body>
+<div id="app">
+    <!--v-if：如果条件为true，那么显示；操作的是DOM节点，不是控制样式-->
+    <!--<div v-if="Math.random()>0.5">111</div>-->
+    <!--<div v-else>222</div>-->
+    <button @click="flag=!flag">显示/隐藏</button>
+    <!--被包裹的元素有动画效果，transition不会显示在页面中-->
+    <transition name="my" enter-active-class="animate bounceIn" leave-active-class="animate bounceOut">
+        <!--v-show：操作的是元素的样式，控制display；如果频繁操作，那么最好用v-show-->
+        <div v-show="flag" class="hh">恍恍惚惚</div>
+    </transition>
+
+</div>
+<script src="./node_modules/vue/dist/vue.js"></script>
+<script>
+    let vm = new Vue({
+        el: '#app',
+        data: {
+            flag:"false"
+        }
+    });
+</script>
+</body>

@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>珠峰培训</title>
+</head>
+<body>
+<div id="app">
+    <select id="a" v-model="b" multiple>
+    <option value="" disabled>请选择</option>
+    <option value="1">游泳</option>
+    <option value="2">睡觉</option>
+    <option value="3">跑步</option>
+    </select>{{b}}
+</div>
+<script src="./node_modules/vue/dist/vue.js"></script>
+<script>
+    let vm = new Vue({
+        el: '#app',
+        data: {
+            b:[2]
+        }
+    });
+</script>
+</body>

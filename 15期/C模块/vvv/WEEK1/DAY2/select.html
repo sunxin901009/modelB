@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>珠峰培训</title>
+</head>
+<body>
+<div id="app">
+    <!--select绑定v-model的数据是一个数组，数组成员是option中的value值-->
+    <!--<select id="a" v-model="b">-->
+        <!--<opation value="" disable>请选择</opation>-->
+        <!--<opation value="1">睡觉</opation>-->
+        <!--<opation value="2">玩 </opation>-->
+        <!--<opation value="3">跑步</opation>-->
+    <!--</select>-->
+    <!--一般用于表单元素，checkbox、radio、text、select-->
+    <!--原生中用name属性保持一致也会用互斥效果-->
+    <input type="radio" v-model="sex" value="男">男
+    <input type="radio" v-model="sex" value="女">女
+</div>
+<script src="../../node_modules/vue/dist/vue.js"></script>
+<script>
+    let vm = new Vue({
+        el: '#app',
+        data: {
+            b:[],
+            sex:"男"
+        }
+    });
+</script>
+</body>

@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>珠峰培训</title>
+    <style>
+        #app>div{
+            position: absolute;
+            width: 100px;
+            height: 100px;
+            background: lightgrey;
+        }
+    </style>
+</head>
+<body>
+<div id="app">
+<!--<button v-color="flag">点我</button>-->
+    <div v-drag=""></div>
+    <div v-drag=""></div>
+</div>
+<script src="./node_modules/vue/dist/vue.js"></script>
+<script>
+    //Vue.directives() 全局自定义指令
+    let vm = new Vue({
+        el: '#app',
+        //自定义指令
+        directives:{
+            color(el,current){
+                el.style.color=current.value;
+            },
+            drag(el){
+                el.onmousedown=function (e) {
+                    let disX=e.pageX-el.offsetLeft,
+                        disY=e.pageY-el.offsetTop;
+                    document.onmousemove=function (e) {
+                        el.style.left=e.pageX-disX+"px";
+                        el.style.top=e.pageY-disY+"px";
+                    };
+                    document.onmouseup=function () {
+                        document.onmousemove=document.onmouseup=null;
+                    }
+                }
+            }
+        },
+        data: {
+            flag:"red"
+        }
+    });
+</script>
+</body>
