@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<style type="text/css">
+    * {
+        margin: 0;
+        padding: 0;
+    }
+
+    #box {
+        position: absolute;
+        left: 0;
+        top: 0;
+        width: 100px;
+        height: 100px;
+        border-radius: 50%;
+        background: lightseagreen;
+        opacity: 1;
+    }
+</style>
+</head>
+<body>
+<div id="box"></div>
+<script src="animate.js"></script>
+<script src="utils.js"></script>
+<script>
+    var obox = document.getElementById("box");
+    //获取 target begin change duration
+    var target = {
+            left: utils.win("clientWidth") - obox.offsetWidth,
+            top: utils.win("clientHeight") - obox.offsetHeight,
+            opacity: 0.4,
+            width: 50,
+            height: 50
+        },
+        target1 = {
+            left: 0,
+            top: 0,
+            opacity: 1,
+            width: 25,
+            height: 25
+        };
+    zfAnimate(obox, target, 3000, ["Bounce", "easeOut"], function () {
+        utils.css(obox,"background","red");
+        zfAnimate(obox, target1, 3000, ["Bounce", "easeOut"],function () {
+            utils.css(obox,"background","blue");
+        })
+    })
+</script>
+</body>
+</html>

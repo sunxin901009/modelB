@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <style type="text/css">
+        * {
+            margin: 0;
+            padding: 0;
+        }
+
+        #box {
+            position: absolute;
+            top: 0;
+            left: 0;
+            padding: 0;
+            width: 100px;
+            height: 100px;
+            background: lawngreen;
+        }
+    </style>
+
+</head>
+<body>
+<div id="box"></div>
+<script src="../../图片懒加载/utils.js"></script>
+<script>
+    var oBox = document.getElementById("box");
+    //实现一个匀速运动：在指定时间内完成动画：计算出总距离/总时间，根据总距离和总时间求出对应的步长（每10ms走一步的话需要走多远）
+    //设置一个定时器，让元素每一次都在当前基础上累加步长即可
+    var maxLeft = utils.win("clientWidth") - oBox.offsetWidth;
+    var duration = 2000;
+    var step = (maxLeft / duration) * 10;
+    oBox.onclick = function () {
+        var timer = window.setInterval(function () {
+            var curLeft = utils.getCss(oBox, "left");
+//            console.log(curLeft);
+            //debugger
+            if (curLeft >= maxLeft) {
+                window.clearInterval(timer);
+                var maxTop = utils.win("clientHeight") - oBox.offsetHeight;
+                var durationTop = 1500;
+                var stepWidth = (maxTop / durationTop) *10;
+                //debugger
+                var times = setInterval(function () {
+                    var curTop = utils.getCss(oBox, "top");
+                    console.log(curTop);
+                    if (curTop >= maxTop) {
+                    clearInterval(times);
+                        return
+                    }
+                    curTop += stepWidth;
+                    utils.setCss(oBox, "top", curTop);
+                }, 10);
+                return
+            }
+            curLeft += step;
+            utils.setCss(oBox, "left", curLeft);
+        }, 10);
+    }
+
+</script>
+</body>
+</html>

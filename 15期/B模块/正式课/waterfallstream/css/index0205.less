@@ -1,0 +1,51 @@
+@import "reset";
+.container{
+  width: 850px;
+  margin: 0 auto;
+  background: #eee;
+  overflow: hidden;
+
+  ul{
+    float: left;
+    list-style: none;
+    width: 200px;
+    margin-left: 10px;
+    border: 1px solid lightblue;
+    li{
+      position: relative;
+      width: 200px;
+      margin-top: 10px;
+      background: white;
+      img{
+        width: 100%;
+        height: 200px;
+        background: url("../images/load5.gif") repeat center;
+      }
+      p{
+        width: 100%;
+        height: 30px;
+        line-height: 30px;
+        display: block;
+        text-align: center;
+        font-size: 16px;
+        background: white;
+      }
+      a{
+        display: none;
+        position: absolute;
+        top: 5px;
+        left: 5px;
+        width: 60px;
+        height: 30px;
+        line-height: 30px;
+        font-size: 16px;
+        text-align: center;
+        background: hotpink;
+      }
+      &:hover a{
+        display: block;
+      }
+    }
+
+  }
+}

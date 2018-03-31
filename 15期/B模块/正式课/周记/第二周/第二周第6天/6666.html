@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<script>
+//var str="201801101108";
+//    var ary=["零","壹","贰","叁","肆","伍","陆","柒","捌","玖"
+//    ];
+//var reg =/\d/g;
+//    var newStr=str.replace(reg,function () {
+//        var index=arguments[0];
+//        var pup=ary[index];
+//        return pup;
+//    });
+//console.log(newStr);
+//    var str="2018-01-10 11:52:30";
+//    var time=["年","月","日","时","分","秒"]
+//var i=0;
+//str=str.replace(/[-: ]/g,function () {
+//        return time[i++]
+//    })
+//console.log(str);
+   var str="my name is {0},i am {1} year old,my hobby is {2}";
+   str=str.replace(/([a-z])([a-z]*)/g,function () {
+      //console.log(arguments);
+       return arguments[1].toUpperCase()+arguments[2]
+   })
+console.log(str);
+//    var ary=["王云成","18","playing game"]
+//    str=str.replace(/\{(\d)\}/g,function () {
+//        var index=arguments[1];
+//       // console.log(index);
+//       return ary[index]
+//    })
+//console.log(str);
+//    var str="88112113116778"
+//    laststr="88,112,113,116,778"
+//    str=str.replace(/^(\d{0,3})((\d{3})+)$/g,function () {
+//        var part1=arguments[1];
+//        var part2=arguments[2];
+//        return part1+","+part2.replace(/(\d{3})(?!\b)/g,function () {
+//                    return arguments[0]+",";
+//                })
+//    })
+//console.log(str);
+</script>
+</body>
+</html>

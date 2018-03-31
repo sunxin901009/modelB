@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<script>
+    var ary = [0,1,2,3,4,5,6];
+    Array.prototype.sliceof = function (s, e) {
+        if (s == undefined && e == undefined) {
+            return this;
+        }
+        var arr = [];
+        if (-this.length<s && s<0) {
+            s= s + this.length;
+        }
+        if (e < 0) {
+            e = e + this.length;
+        }
+        if(s<-this.length){
+            s=0;
+        }
+        if(e>this.length){
+            e=this.length;
+        }
+//        console.log(this.length);
+        //一个
+        if (e===undefined ){
+            if (s >= 0 && s < this.length) {
+                for (var i = s; i < this.length; i++) {
+                    arr.push(this[i])
+                }
+                return arr
+            }
+            if (s < 0 && s > -this.length) {
+                for (var i = s + this.length; i < this.length; i++) {
+                    arr.push(this[i])
+                }
+                return arr
+            }
+            if (s < -this.length) {
+                return this
+            }
+            if (s > this.length) {
+                return []
+            }
+        }
+//一个结束
+        if (s < e) {
+            for (var i = s; i < e; i++) {
+                arr.push(this[i])
+            }
+        } else {
+            return arr;
+        }
+        return arr;
+    };
+    console.log(ary.sliceof(-4));
+
+</script>
+</body>
+</html>

@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <style type="text/css">
+        * {
+            margin: 0;
+            padding: 0;
+        }
+
+        #tab {
+            width: 400px;
+            height: 300px;
+            margin: 30px auto;
+        }
+
+        #tab ul {
+            list-style: none;
+            overflow: hidden;
+        }
+
+        ul li {
+            width: 60px;
+            height: 30px;
+            line-height: 30px;
+            text-align: center;
+            /*margin: 30px auto;*/
+            border: 1px solid lightgrey;
+            float: left;
+            margin-right: 5px;
+            cursor: pointer;
+        }
+
+        #tab div {
+            display: none;
+            width: 400px;
+            height: 300px;
+            line-height: 300px;
+            text-align: center;
+            border: 1px solid lightseagreen;
+        }
+
+        ul .select {
+            background: lightblue;
+        }
+
+        #tab .select {
+            display: block;
+        }
+    </style>
+</head>
+<body>
+<div id="tab">
+    <ul>
+        <li class="select">a</li>
+        <li>b</li>
+        <li>c</li>
+    </ul>
+    <div class="select">哈哈哈</div>
+    <div>嘿嘿嘿</div>
+    <div>呵呵呵</div>
+</div>
+</body>
+<script>
+    var tab = document.getElementById("tab");
+    var olis = document.getElementsByTagName("li");
+    var odivs = tab.getElementsByTagName("div");
+    //自定义属性
+    //     for (var i = 0; i < olis.length; i++) {
+    //        olis[i].index=i;
+    //        olis[i].onclick=function () {
+    //            change(this.index)
+    //        }
+    //    }
+        function change(n) {
+            for (var k = 0; k < olis.length; k++) {
+               olis[k].className="";
+                odivs[k].className="";
+            }
+            olis[n].className="select";
+            odivs[n].className="select";
+        }
+    //闭包 形成三个不销毁的作用域
+//    for (var i = 0; i < olis.length; i++) {
+//        olis[i].onclick=(function (k) {
+//            return function () {
+//                change(k)
+//            }
+//        })(i)
+//    }
+    for (var j = 0; j < olis.length; j++) {
+        (function (k) {
+            olis[j].onclick=function () {
+                change(k);
+            }
+        })(j)
+    }
+</script>
+</html>

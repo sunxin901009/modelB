@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <style type="text/css">
+        *{
+            margin: 0;
+            padding: 0;
+        }
+        #box{
+            position: absolute;
+            left: 10px;
+            top: 0;
+            width: 100px;
+            height: 100px;
+            background: lightseagreen;
+            opacity: 1;
+        }
+    </style>
+
+</head>
+<body>
+<div id="box"></div>
+</body>
+<script src="utils.js"></script>
+<script>
+   var obox=document.getElementById("box");
+   var target=utils.win("clientWidth")-obox.offsetWidth;
+   var target1=utils.win("clientHeight")-obox.offsetHeight;
+   var setTime=2000;
+   var nowTime=0;
+   var timer=setInterval(function () {
+       var nowL=target/setTime*nowTime;
+       var nowH=target1/setTime*nowTime;
+       if (nowL>=target && nowH>=target1){
+           utils.css(obox,"left",target);
+           utils.css(obox,"top",target1);
+           utils.css(obox,"opacity",0.3)
+           clearInterval(timer);
+           return
+       }
+       var op=utils.css(obox,"opacity");
+       newOp=op-0.005;
+       nowTime+=17;
+       utils.css(obox,"left",nowL);
+       utils.css(obox,"top",nowH);
+       utils.css(obox,"opacity",newOp)
+   },17)
+   // var timer=setInterval(function () {
+   //     var nowL=utils.css(obox,"left");
+   //     //console.log(nowL);
+   //     var newL=nowL+10;
+   //     if (newL>=target){
+   //         newL=target;
+   //         clearInterval(timer);
+   //         return
+   //     }
+   //     utils.css(obox,"left",newL);
+   // },17)
+</script>
+</html>

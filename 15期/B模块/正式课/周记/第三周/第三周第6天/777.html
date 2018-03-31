@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<div id="outer">
+    <div id="inner">
+        <div id="center"></div>
+    </div>
+    <!--jjj-->
+</div>
+<script>
+    var outer=document.getElementById("outer")
+    function children(curEle) {
+        var reg = /MSIE 8.0/;
+        if(reg.test(navigator.userAgent)){
+            var aa=curEle.children
+            for (var i = 0; i < aa.length; i++) {
+                var cur = aa[i];
+                if (cur.nodeType===8){
+                    delete cur;
+                }
+            }
+            return aa;
+        }
+        return curEle.children
+    }
+    console.log(children(outer));
+</script>
+</body>
+</html>

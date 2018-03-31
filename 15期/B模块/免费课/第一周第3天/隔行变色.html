@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <style type="text/css">
+        *{
+            margin: 0;
+            padding: 0;
+        }
+        ul{
+            width: 500px;
+            margin: 20px auto;
+            list-style: none;
+        }
+        ul li{
+            width: 100%;
+            height: 50px;
+            line-height: 50px;
+            text-align: center;
+            border: 1px solid red;
+        }
+
+    </style>
+</head>
+<body>
+<ul>
+    <li>至于使用相等运算符会不会对后续代码造成意外影响，答案是。</li>
+    <li>至于使用相等运算符会不会对后续代码造成意外影响，答案是。</li>
+    <li>至于使用相等运算符会不会对后续代码造成意外影响，答案是。</li>
+    <li>至于使用相等运算符会不会对后续代码造成意外影响，答案是。</li>
+    <li>至于使用相等运算符会不会对后续代码造成意外影响，答案是。</li>
+    <li>至于使用相等运算符会不会对后续代码造成意外影响，答案是。</li>
+    <li>至于使用相等运算符会不会对后续代码造成意外影响，答案是。</li>
+    <li>至于使用相等运算符会不会对后续代码造成意外影响，答案是。</li>
+</ul>
+<script>
+    //1.要操作谁获取谁
+    //类数组
+    var olis=document.getElementsByTagName("li");
+    console.log(olis.length);//8
+    for(var i=0;i<olis.length;i++){
+        if (i%2===0){
+            olis[i].style.background="blue"
+        }
+
+        if (i%2===1){
+            olis[i].style.background="red"
+        }
+        //给每个li保存一个当前的背景色,自定义属性：zhufengColor
+        olis[i].zhufengColor=olis[i].style.background;
+        olis[i].zhufeng=i;
+        //给每一个li 绑定鼠标滑入
+        olis[i].onmouseover=function () {
+            //当鼠标滑入时，for循环已经循环完成，那么i变成8；
+            //函数中体的this指向当前被绑定事件的元素
+            this.style.background="yellow";
+        }
+        olis[i].onmouseout=function () {
+            this.style.background=this.zhufengColor;
+        }
+        olis[i].onclick=function () {
+            alert("我是第"+(this.zhufeng+1)+"项")
+        }
+    }
+
+
+</script>
+</body>
+</html>

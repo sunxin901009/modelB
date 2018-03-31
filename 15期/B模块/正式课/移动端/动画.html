@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <style type="text/css">
+        *{
+            margin: 0;
+            padding: 0;
+        }
+        #box{
+            width: 200px;
+            height: 200px;
+            background: lightblue;
+            margin: 80px auto;
+            -webkit-transition: all 2s linear;
+            -moz-transition: all 2s linear;
+            -ms-transition: all 2s linear;
+            -o-transition: all 2s linear;
+            transition: all 1s linear;
+        }
+        #box:hover{
+            /*width: 300px;*/
+            /*height: 300px;*/
+            /*scale：宽高整体缩放*/
+            /*rotate: 顺时针旋转*/
+            /*skew：逆时针倾斜*/
+            transform: translate(100px,100px) scale(.5) rotate(180deg) ;
+            background: lightcoral;
+        }
+    </style>
+</head>
+<body>
+<div id="box"></div>
+</body>
+</html>

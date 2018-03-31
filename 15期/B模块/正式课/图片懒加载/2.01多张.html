@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <style type="text/css">
+        *{
+            margin: 0;
+            padding: 0;
+        }
+        body{
+            width: 100%;
+        }
+        #oul{
+            list-style: none;
+        }
+        #oul li{
+            padding: 10px;
+            width: 100%;
+            border-bottom: 1px dashed lightskyblue;
+            height: 70px;
+            overflow: hidden;
+        }
+        #oul li div{
+
+        }
+        #oul li img{
+            display: block;
+            width: 100px;
+            height: 75px;
+            float: left;
+            margin-right: 10px;
+        }
+    </style>
+</head>
+<body>
+<ul id="oul">
+    <li>
+        <img src="img/1.jpg" alt="">
+        <div>
+            <h2>网络强国战略习近平与“十三五”十四大战略</h2>
+            <p>互联网是二十世纪人类最大的发明互联网是二十世纪.</p>
+        </div>
+    </li>
+</ul>
+<script src="utils.js"></script>
+<script>
+    //1.获取数据ajax
+    var data;
+    var oul=document.getElementById("oul");
+    var xhr=new XMLHttpRequest();
+    xhr.open("get","newList.json",false);
+    xhr.onreadystatechange=function () {
+        if (xhr.readyState=== 4 && xhr.status===200){
+            data=utils.toJSON(xhr.responseText)
+        }
+    }
+    xhr.send(null);
+    //2.绑定数据
+    var str=``;
+    for (var i = 0; i < data.length; i++) {
+        var cur = data[i];
+        str+=`<li>
+        <img src="img/default.jpg" data-img="${cur.img}" alt="">
+        <div>
+            <h2>${cur.title}</h2>
+            <span>${cur.desc}</span>
+        </div>
+    </li>`
+    }
+    oul.innerHTML=str;
+    //3.图片懒加载
+    var imgs=document.getElementsByTagName(img);
+    var winT=utils.win("clientHeight");
+    function lazy() {
+        for (var i = 0; i < imgs.length; i++) {
+            lazyLoad(i);
+        }
+    }
+    function lazyLoad(i) {
+        var curImg=imgs[i];
+
+    }
+    lazy();
+    window.onscroll=lazyLoad;
+</script>
+</body>
+</html>

@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <style type="text/css">
+        *{
+            margin: 0;
+            padding: 0;
+        }
+        #box{
+            position: absolute;
+            left: 0;
+            top: 0;
+            width: 100px;
+            height: 100px;
+            border-radius: 50%;
+            background: lightseagreen;
+            opacity: 1;
+        }
+    </style>
+</head>
+<body>
+<div id="box"></div>
+</body>
+<script src="utils.js"></script>
+<script src="animate回调.js"></script>
+<script>
+    var obox=document.getElementById("box");
+    animate(obox,{
+        top:utils.win("clientHeight")-obox.offsetWidth,
+        left:utils.win("clientWidth")/4-obox.offsetHeight
+    },500,function () {
+        utils.css(obox,"background","lightcoral");
+        animate(obox,{
+            top:0,
+            left:utils.win("clientWidth")/2-obox.offsetHeight
+        },500,function () {
+            utils.css(obox,"background","lightblue");
+            animate(obox,{
+                top:utils.win("clientHeight")-obox.offsetWidth,
+                left:utils.win("clientWidth")*3/4-obox.offsetHeight
+            },500,function () {
+                utils.css(obox,"background","lightsalmon");
+                animate(obox,{
+                    top:0,
+                    left:utils.win("clientWidth")-obox.offsetHeight
+                },500,function () {
+                    utils.css(obox,"background","lightseagreen");
+                })
+            })
+        })
+    })
+</script>
+</html>

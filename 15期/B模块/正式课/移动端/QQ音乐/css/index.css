@@ -1,0 +1,152 @@
+html{
+    font-size: 100px;
+}
+html,body{
+    height: 100%;
+}
+.container{
+    height: 100%;
+    position: relative;
+}
+.container .background,.container .backgroundImg{
+    position: absolute;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    z-index: -2;
+}
+.container .backgroundImg{
+    background: url("../img/myDream.jpg") no-repeat;
+    background-size: cover;
+    filter:blur(7px);
+    -webkit-filter:blur(7px);
+}
+.container .background{
+    background: rgba(0,0,0,.2);
+}
+.header{
+    padding: .3rem;
+    position: relative;
+    background: rgba(0,0,0,.3);
+}
+.header .content img{
+    height: 1.2rem;
+    width: 1.2rem;
+    display: inline-block;
+}
+.header h2{
+    display: inline-block;
+    margin-left: .2rem;
+    vertical-align: top;
+}
+.header h2 span{
+    height: .6rem;
+    line-height: .6rem;
+    color: white;
+    display: block;
+    font-size: .32rem;
+}
+.header h2 span:nth-child(1){
+    font-size: .36rem;
+}
+.header .musicBtn{
+    width: .6rem;
+    height: .6rem;
+    display: block;
+    position: absolute;
+    top: 50%;
+    margin-top: -.3rem;
+    right: .3rem;
+    background: url("../img/music.svg") no-repeat;
+    background-size: 100%;
+}
+.header .musicBtn.select{
+    animation: move .5s linear infinite;
+}
+@-webkit-keyframes move {
+    0%{
+        transform: rotate(0deg);
+    }
+    100%{
+        transform: rotate(360deg);
+    }
+}
+@keyframes move {
+    0%{
+        transform: rotate(0deg);
+    }
+    100%{
+        transform: rotate(360deg);
+    }
+}
+.main{
+    position: relative;
+    padding: .3rem;
+    height: 5rem;
+    overflow: hidden;
+}
+.main .wrapper{
+    position: absolute;
+    width: 100%;
+    /*height: 6rem;*/
+    top: 0;
+    padding: 0;
+    overflow: hidden;
+}
+.main .wrapper p{
+    height: .84rem;
+    line-height: .84rem;
+    width: 100%;
+    font-size: .32rem;
+    letter-spacing: .04rem;
+    text-align: center;
+    color: rgba(255,255,255,.5);
+}
+.main .wrapper p.select{
+    color:#31C27C;
+}
+.footer{
+padding: .3rem;
+    position: relative;
+}
+.footer .progress{
+    height: .8rem;
+    width: 100%;
+}
+.progress span{
+    color: white;
+    font-size: .24rem;
+    position: absolute;
+    top: .35rem;
+}
+.progress span:nth-child(1){
+    left: .2rem;
+}
+.progress span:nth-child(2){
+    right: .2rem;
+}
+.progress .proBg{
+    width: 80%;
+    height: .04rem;
+    background: rgba(255,255,255,.3);
+    margin: .2rem auto;
+}
+.progress .proBg .already{
+    height: .04rem;
+    width: 0rem;
+    background: #31C27C;
+}
+.footer .down{
+    display: block;
+    width: 4.4rem;
+    margin: auto;
+    height: 1rem;
+    border-radius: .5rem;
+    line-height: 1rem;
+    background: url("../img/sprite_play.png") .2rem -5.84rem no-repeat #31C27C;
+    background-size: .8rem 7rem;
+    font-size: .32rem;
+    color: white;
+    text-align: center;
+}

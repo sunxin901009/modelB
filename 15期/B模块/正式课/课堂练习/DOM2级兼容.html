@@ -1,0 +1,124 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <style type="text/css">
+        html,body{
+            width:100%;
+            height:100%;
+        }
+        #box{
+            width: 100px;
+            height: 100px;
+            background: red;
+        }
+    </style>
+</head>
+<body>
+<div id="box"></div>
+<script>
+    // addEventListener(标准浏览器)   attachEvent（IE低版本浏览器IE10以下这个方法）
+    // 1. this  attachEvent this指向window
+    // 2. 顺序问题； 执行顺序是乱序的；
+    // 3. 重复绑定问题
+
+
+//    document.body.addEventListener('click',fn1,false);
+//     function fn1() {
+//             off(oBox,'click',fn2);
+//             console.log(1);//
+//         }
+//    function fn2() {
+//        console.log(2);//
+//    }
+//    document.body.attachEvent('onclick',fn1);
+//    document.body.attachEvent('onclick',fn1);
+    // IE8 以下的事件绑定；
+    // on     自定义属性  oBox["pool" + click] = [fn1,fn2]
+    var oBox=document.getElementById("box");
+    Function.prototype.myBind = function () {
+        // 保存this
+        var _this = this;
+        var that = arguments[0];
+        var  arguments1 = [].slice.call(arguments,1);
+        return  function () {// 起保护作用
+            // 把两个函数中arguments拼接到一起；
+            var cur =arguments1.concat([].slice.call(arguments));
+            _this.apply(that,cur);
+        }
+    }
+    function on(curEle,type,fn) {
+        if(curEle.addEventListener){
+            // 判断是否是IE8以下浏览器
+            curEle.addEventListener(type,fn,false);
+            return;
+        }
+        //
+        if(!curEle['pool'+type]){
+            // 第一次进来，给pool + type 初始化一个空数组；
+            curEle['pool'+type] = [];
+            curEle.attachEvent("on"+type,run.myBind(curEle));
+        }
+        var ary = curEle['pool'+type];
+//        if(ary.indexOf(fn)>-1){
+//            return;
+//        }
+        for(var i=0;i<ary.length;i++){
+            if(fn === ary[i]){
+                return;
+            }
+        }
+        ary.push(fn);
+
+    }
+
+    function run(e) {
+        e=window.event;
+        // this --> curEle
+        // 获取事件池
+        // 循环事件池，让池子中的方法挨个执行；同时改变方法中this指向；
+        var ary=this["pool"+e.type];
+        for (var i = 0; i < ary.length; i++) {
+            if (ary[i]===null){
+                ary.splice(i,1);
+                i--;
+                continue;
+            }
+            ary[i].call(this,e)
+        }
+    }
+    // 移出事件行为上的方法；
+    function off(curEle,type,fn) {
+        if(curEle.removeEventListener){
+            // 判断是否是IE8以下浏览器
+            curEle.removeEventListener(type,fn,false);
+            return;
+        }
+        var ary=curEle["pool"+type];
+        for (var i = 0; i < ary.length; i++) {
+            if (fn===ary[i]){
+               ary[i]=null;
+               return;
+            }
+        }
+    }
+    on(oBox,"click",fn1);
+    on(oBox,'click',fn2);
+    function fn1() {
+        off(oBox,'click',fn2);
+        console.log(1);//
+    }
+       function fn2() {
+           console.log(2);//
+       }
+
+
+
+
+
+
+
+</script>
+</body>
+</html>

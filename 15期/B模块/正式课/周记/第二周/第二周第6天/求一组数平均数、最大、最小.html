@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<script>
+   // function average() {
+//        var ary=[];
+//        for (var i = 0; i < arguments.length; i++) {
+//            var cur=arguments[i];
+//            ary.push(cur);
+//        }
+//        ary.sort(function (a,b) {
+//            return a-b;
+//        });
+//        ary.pop();
+//        ary.shift();
+//        var ave= parseFloat(eval(ary.join("+"))/ary.length).toFixed(2)
+//        [].sort.call(arguments,function (a,b) {
+//            return a-b;
+//        });
+//        [].pop.call(arguments);
+//        [].shift.call(arguments);
+//        var ave=eval([].join.call(arguments,"+"))/arguments.length;
+//        console.log(ave.toFixed(2));
+//    }
+//    average(9.8,9.3,9.6,9.2,9.8,9.9,10,5,9.6,9.8)
+    var ary = [1,2,5,6,9,8,7]
+   var max=ary[0];
+   var min=ary[0];
+   for (var i = 0; i < ary.length; i++) {
+       var cur = ary[i];
+       if (cur>max){
+           max=cur;
+       }
+       if (cur<min){
+           min=cur;
+       }
+   }
+   console.log(max);
+   console.log(min);
+</script>
+</body>
+</html>

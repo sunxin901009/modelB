@@ -1,0 +1,137 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <style type="text/css">
+        * {
+            margin: 0;
+            padding: 0;
+        }
+
+        html, body {
+            width: 100%;
+        }
+
+        #box {
+            position: fixed;
+            bottom: 20px;
+            right: 20px;
+            width: 100px;
+            height: 100px;
+            background: lightseagreen;
+            border-radius: 10px;
+            text-align: center;
+            line-height: 100px;
+            color: yellow;
+            cursor: pointer;
+            opacity: 0;
+        }
+
+        div img {
+            width: 100%;
+            height: 750px;
+            display: block;
+        }
+    </style>
+</head>
+<body>
+<div>
+    <img src="1.jpg" alt="">
+    <img src="2.jpg" alt="">
+    <img src="3.jpg" alt="">
+    <img src="4.jpg" alt="">
+</div>
+<div id="box">回到顶部</div>
+<script src="utils.js"></script>
+<script>
+    var oBox = document.getElementById("box");
+    oBox.onclick=function () {
+        var timer=setInterval(function () {
+            var scT=utils.win("scrollTop");
+            utils.win("scrollTop",scT-20)
+        },500)
+        if (scT===0){
+            clearInterval(timer);
+        }
+    }
+    var winH=utils.win("clientHeight");
+    window.onscroll=function () {
+        var newScroll=utils.win("scrollTop");
+        if (newScroll>=winH){
+            var time1=setInterval(function () {
+                var op=utils.getCss(oBox,"opacity");
+
+                utils.setCss(oBox,"opacity",op+0.05)
+                if (op===1){
+                    clearInterval(time1)
+                }
+            },500)
+
+        }
+        var op=utils.getCss(oBox,"opacity");
+        if (op===1 && newScroll<winH){
+            var time2=setInterval(function () {
+                var op=utils.getCss(oBox,"opacity");
+
+                utils.setCss(oBox,"opacity",op-0.05)
+                console.log(op);
+                if (op===0){
+                    clearInterval(time2)
+                }
+            },500);
+        }
+    }
+
+    // 1.立刻回到页面顶部
+    //    oBox.onclick = function () {
+    //        utils.win("scrollTop",0)
+    //    }
+    // 2.渐渐回到顶部
+//    oBox.onclick = function () {
+//
+//        var timer = setInterval(function () {
+//            var curT = utils.win("scrollTop");
+//            if (curT === 0) {
+//                clearInterval(timer)
+//            }
+//            utils.win("scrollTop", curT - 20)
+//            console.log(10)
+//        }, 10)
+//    }
+//    var winH = utils.win("clientHeight");
+//    console.log(winH);
+//    // 当手动拖拽页面滚动条时，这个方法才会执行；
+//    window.onscroll = function () {
+//        //监听页面滚动条，滚动条卷去高度变化，函数执行；
+//        // 执行次数，和拖拽距离没有直接关系，同等距离，拖拽速度越快，执行次数越少；
+////        console.log(1)
+//        // 当页面的滚动条卷起的高度和页面可视窗口高度大小一样时，让当前盒子显示
+//        var newScroll = utils.win("scrollTop");
+//        //var opc=utils.getCss(oBox,"opacity")
+//        if (winH <= newScroll) {
+//            var time = setInterval(function () {
+//                var opc = utils.getCss(oBox, "opacity");
+//                utils.setCss(oBox, "opacity", opc + 0.05);
+//                if (opc === 1) {
+//                    clearInterval(time)
+//                }
+//                //console.log(opc);
+//            }, 500);
+//        }
+//        var opc = utils.getCss(oBox, "opacity");
+//        if (opc === 1 && winH > newScroll) {
+//            var time1 = setInterval(function () {
+//                var opc = utils.getCss(oBox, "opacity");
+//                utils.setCss(oBox, "opacity", opc - 0.05);
+//                if (opc === 0) {
+//                    clearInterval(time1)
+//                }
+//            }, 500);
+//        }
+//    }
+
+
+</script>
+</body>
+</html>

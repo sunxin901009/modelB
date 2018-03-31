@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<script>
+//    var newAry =[];
+//    for (var i = 0; i < ary.length; i++) {
+//        var cur = ary[i];
+//        if (newAry.indexOf(cur)===-1){
+//            newAry.push(cur)
+//        }
+//    }
+//    console.log(newAry);
+    var obj = {};
+    for (var i = 0; i < ary.length; i++) {
+        var cur = ary[i];
+        if (obj[cur]===cur){
+            //删除当前项要把当前项和最后一项位置调换，删除最后一项，i--，continue；
+           ary[i]=ary[ary.length-1];
+            ary.length--;
+            i--;
+            continue;
+        }
+        obj[cur]=cur;
+    }
+    console.log(ary);
+</script>
+</body>
+</html>

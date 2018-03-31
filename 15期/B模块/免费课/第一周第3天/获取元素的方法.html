@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<div id="div1" class="box"></div>
+<div id="div2" class="box"></div>
+<div id="div3" class="box"></div>
+<script>
+    //1.通过ID获取元素
+    var box =document.getElementById("div1");
+    //console.log(box);//是一个对象数据类型的，里面有好多键值对组成
+    //2.通过class 获取元素,获取多个元素，获取一个集合
+    //通过索引获取每个div
+    var divs=document.getElementsByClassName("box")
+    console.log(divs);
+    //3.通过标签名来获取元素
+    var divs=document.getElementsByTagName("div")
+    console.log(divs);
+
+
+</script>
+</body>
+</html>

@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<script>
+    //    var a = [22,56,32,69,56,27,22,89,74]
+    //    //数组去重
+    //    //一、indexOf 方法：1.for循环（遍历每一项）2.新建一个数组cur，用if条件判断，如果a数组中的项没有在新数组cur中出现，那么我们就把这项用push方法加到新数组cur中，最后就会得到一个新数组，达到去重的效果。
+    //    var newArry = [];
+    //    for (var i = 0; i < a.length; i++) {
+    //        //var cur = a[i];
+    //        if(newArry.indexOf(a[i])===-1){
+    //            newArry.push(a[i])
+    //        }
+    //    }
+    //    console.log(newArry);
+    //var a = [22, 56, 32, 69, 56, 27, 22, 89, 74]
+    //二、利用对象属性名不能重复实现数组去重：1.新建一个新对象2.for循环遍历数组3.利用对象属性名不能重复，用if判断，如果当前项在新对象里面没有，那么就把当前项利用自定义属性加到新对象里面，如果当前项在新对象里面有，那么就把数组最后一项和当前项进行调换，然后删除数组最后一项（不能用slice进行删减，会造成数组塌陷问题，非常消耗性能），再进行i--，再次检查被调换过来的当前项。最后continue，结束本轮循环。
+//    var obj = {};
+//    for (var i = 0; i <a.length; i++) {
+//        var cur = a[i];
+//        if(obj[cur]===cur){
+//            a[i]=a[a.length-1];
+//            a.length--;
+//            i--;
+//            continue;
+//        }
+//        obj[cur]=cur;
+//    }
+//    console.log(a);
+    //利用indexOf去重
+//    var a = [22, 56, 32, 69, 56, 27, 22, 89, 74]
+//    var newVarry = [];
+//    for (var i = 0; i < a.length; i++) {
+//        var cur = a[i];
+//        if(newVarry.indexOf(cur)===-1){
+//            newVarry.push(cur)
+//        }
+//
+//    }
+//    console.log(newVarry);
+    //利用对象属性名不可以重复进行数组去重
+//    var a = [22, 56, 32, 69, 56, 27, 22, 89, 74]
+//    var obj = {};
+//    for (var i = 0; i < a.length; i++) {
+//       // var cur = a[i];
+//        if(obj[a[i]]===a[i]){
+//            a[i] = a[a.length-1];
+//            a.length--;
+//            i--;
+//            //continue;
+//        }
+//        obj[a[i]]=a[i];
+//    }
+//    console.log(a);
+//    console.log(obj);
+</script>
+</body>
+</html>

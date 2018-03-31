@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <style type="text/css">
+        *{
+            margin: 0;
+            padding: 0;
+        }
+        #box{
+            width: 100px;
+            height: 100px;
+            background: lightseagreen;
+        }
+        /*all：所以设备 screen print*/
+        /*max-width：当前屏幕最大是1200px，当前样式有效*/
+        @media all and (max-width: 1200px){
+            /*当屏幕宽度小于1200px时，此处样式有效*/
+            #box{
+                background: lightsalmon;
+            }
+        }
+        @media all and (min-width: 800px) {
+            /*当屏幕宽度大于800px时，此处样式有效*/
+            #box{
+                background: lightgrey;
+            }
+        }
+
+
+    </style>
+</head>
+<body>
+<div id="box"></div>
+</body>
+</html>

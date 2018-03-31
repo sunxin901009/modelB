@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <meta name="viewport"
+          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <link rel="stylesheet" href="css/reset.min.css">
+    <link rel="stylesheet" href="css/index.css">
+    <script>
+        function computedFont() {
+            var winW=document.documentElement.clientWidth;
+            document.documentElement.style.fontSize=winW/640*100+"px"
+        }
+        computedFont()
+        window.addEventListener('resize',computedFont.false)
+    </script>
+</head>
+<body>
+<section class="container">
+    <audio src="img/myDream.m4a" preload="none" id="musicAudio"></audio>
+    <div class="backroundImg"></div>
+    <div class="backround"></div>
+    <header class="header">
+        <div class="content">
+            <img src="img/myDream.jpg" alt="">
+            <h2>
+                <span>我的梦</span>
+                <span>张靓颖</span>
+            </h2>
+        </div>
+        <a href="javascript:;" class="musicBtn"></a>
+    </header>
+    <main class="main">
+        <div class="wrapper">
+            <p>我和你，心连心，同住地球村</p>
+            <p>我和你，心连心，同住地球村</p>
+            <p>我和你，心连心，同住地球村</p>
+            <p>我和你，心连心，同住地球村</p>
+        </div>
+    </main>
+    <footer class="footer">
+        <div class="progress">
+            <span class="current">00:00</span>
+            <span class="duration">00:00</span>
+            <!--进度条-->
+            <div class="proBg">
+                <div class="already"></div>
+            </div>
+        </div>
+        <!--下载音乐-->
+        <a href="javascript:;" class="down">下载这首音乐</a>
+    </footer>
+</section>
+<script src="js/zepto.min.js"></script>
+<script src="js/index.js"></script>
+</body>
+</html>

@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <style type="text/css">
+        *{
+            margin: 0;
+            padding: 0;
+        }
+        ul{
+            margin: 30px auto;
+            width: 500px;
+            height: 500px;
+        }
+        ul li{
+            border: 1px solid red;
+            line-height: 50px;
+            text-align: center;
+            list-style: none;
+        }
+    </style>
+</head>
+<body>
+<ul>
+    <li>上面代码中，运算结果由于字符串的位置不同而不同。</li>
+    <li>上面代码中，运算结果由于字符串的位置不同而不同。</li>
+    <li>上面代码中，运算结果由于字符串的位置不同而不同。</li>
+    <li>上面代码中，运算结果由于字符串的位置不同而不同。</li>
+    <li>上面代码中，运算结果由于字符串的位置不同而不同。</li>
+    <li>上面代码中，运算结果由于字符串的位置不同而不同。</li>
+    <li>上面代码中，运算结果由于字符串的位置不同而不同。</li>
+</ul>
+<script>
+  var olis = document.getElementsByTagName("li");
+  for (var i = 0; i < olis.length; i++) {
+
+      if (i%2===0){
+          olis[i].style.background="red"
+      }
+      else {
+          olis[i].style.background="blue"
+      }
+      olis[i].beforColor=olis[i].style.background
+      olis[i].sun=i;
+      olis[i].onmouseover=function () {
+          this.style.background="yellow"
+      }
+      olis[i].onmouseout=function () {
+          this.style.background=this.beforColor
+      }
+      olis[i].onclick=function () {
+          alert(this.sun+1)
+      }
+
+  }
+</script>
+</body>
+</html>

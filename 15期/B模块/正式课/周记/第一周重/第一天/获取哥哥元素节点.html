@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<div id="parent">
+    <div id="box"></div>
+    <div id="box1"></div>
+</div>
+<script>
+    function getBro(curEle) {
+        if ("previousElementSibling" in curEle){
+            return curEle.previousElementSibling;
+        }
+            var tiger=curEle.previousSibling;
+        while (tiger){
+            if (tiger.nodeType===1){
+                return tiger;
+            }
+            tiger=tiger.previousSibling;
+        }
+    }
+    var ary=[109,504,306,456,667,657,668,66]
+    ary.sort()
+    console.log(ary);
+</script>
+</body>
+</html>

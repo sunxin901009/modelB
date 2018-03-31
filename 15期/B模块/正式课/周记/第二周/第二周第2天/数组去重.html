@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<script>
+    Array.prototype.distinct=function () {
+        var obj={};
+        for (var i = 0; i < this.length; i++) {
+            var cur = this[i];
+            if (obj[cur]===cur){
+                this[i]=this[this.length-1];
+                this.length--;
+                i--;
+                continue;
+            }
+            obj[cur]=cur;
+        }
+        return this;
+    }
+    var ary=[1,1,2,2,3]
+    console.log(ary.distinct());
+</script>
+</body>
+</html>

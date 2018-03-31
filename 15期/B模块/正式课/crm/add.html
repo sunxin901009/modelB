@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <link rel="stylesheet" href="css/index.css">
+</head>
+<body>
+<div class="box2">
+    <div>
+        <span>姓名</span>
+        <input type="text" id="userName">
+    </div>
+    <div>
+        <span>年龄</span>
+        <input type="text" id="userAge">
+    </div>
+    <div>
+        <span>电话</span>
+        <input type="text" id="userPhone">
+    </div>
+    <div>
+        <span>地址</span>
+        <input type="text" id="userAddress">
+    </div>
+    <div class="sumbit" id="submit">提交</div>
+</div>
+<script type="text/javascript" src="ajax.js"></script>
+<script type="text/javascript">
+    let submit = document.getElementById("submit");
+    let userName = document.getElementById("userName");
+    let userAge = document.getElementById("userAge");
+    let userPhone = document.getElementById("userPhone");
+    let userAddress = document.getElementById("userAddress");
+    let urlObj = window.location.href;
+    let index = urlObj.indexOf("="); // 28;获取当前等号的索引  校验是新增还是修改
+    let id = urlObj.substr(index + 1);
+    let isFlag = index < 0 ? false : true;
+
+    if (isFlag) {
+        ajax({
+            url: "/getInfo?id=" + id,
+            type: "get",
+            success: function (data) {
+                if (data.code === 0) {
+                    let datacur = data.data;
+                    userName.value = datacur.name;
+                    userAge.value = datacur.age;
+                    userPhone.value = datacur.phone;
+                    userAddress.value = datacur.address;
+                }
+            }
+        })
+
+    }
+    //点击提交按钮
+    submit.onclick = function () {
+        if (isFlag) {
+            ajax({
+                url: "/updateInfo",
+                type: "post",
+                data: {
+                    "id": id,
+                    "name": userName.value,
+                    "age": userAge.value,
+                    "phone": userPhone.value,
+                    "address": userAddress.value
+                },
+                success:function (data) {
+                    if (data.code===0){
+                        window.location.href="index.html"
+                    }
+                }
+            })
+        }else {
+            ajax({
+                url:"/addInfo",
+                type:"post",
+                data:{
+                    "name": userName.value,
+                    "age": userAge.value,
+                    "phone": userPhone.value,
+                    "address": userAddress.value
+                },
+                success:function (data) {
+                    if (data.code===0){
+                        window.location.href="index.html"
+                    }
+                }
+            })
+        }
+    }
+
+
+
+</script>
+
+
+
+</body>
+</html>

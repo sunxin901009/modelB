@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <style type="text/css">
+        *{
+            margin: 0;
+            padding: 0;
+        }
+        #box{
+            width: 200px;
+            height: 200px;
+            text-align: center;
+            line-height: 200px;
+            font-size: 25px;
+            color: lightcyan;
+            background: lightskyblue;
+            position: absolute;
+            left: 200px;
+            top: 100px;
+        }
+    </style>
+</head>
+<body>
+<div id="box">推推推</div>
+<script>
+    var obox=document.getElementById("box");
+    document.onkeydown=function (e) {
+        e=e||window.event;
+        switch (e.keyCode){
+            case 40:
+                obox.style.top=parseFloat(getComputedStyle(obox).top)+5+"px";
+                break;
+            case 38:
+                obox.style.top=parseFloat(getComputedStyle(obox).top)-5+"px";
+                break;
+            case 39:
+                obox.style.left=parseFloat(getComputedStyle(obox).left)+5+"px";
+                break;
+            case 37:
+                obox.style.left=parseFloat(getComputedStyle(obox).left)-5+"px";
+                break;
+        }
+
+    }
+
+
+</script>
+</body>
+</html>

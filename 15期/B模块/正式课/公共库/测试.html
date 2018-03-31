@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<div id="grandpa">
+    <div id="son1">
+        <div id="grandson">
+            <ul class="oul">
+                <li id="aa"></li>
+            </ul>
+        </div>
+    </div>
+    <!--哈哈-->
+    <div id="son2" class="aa hellow hey"></div>
+    <p id="son3"></p>
+    <h2 id="son4" class="son2"></h2>
+    <span id="son5"></span>
+    <i id="son6"></i>
+</div>
+<script src="utils.js"></script>
+<script>
+    var son1=document.getElementById("son1");
+    var son2=document.getElementById("son2");
+    console.log(utils.hasClass(son2,"hello"));
+    //console.log(son2.className.split(" "));
+    //console.log(utilsExtend.hasClass(son2, "hey"));
+    // utils.addClass(son1, "hellow");
+    // console.log(son1);
+    // utils.addClass(son2, "hellow");
+    // console.log(son2);
+    // var grandpa = document.getElementById("grandpa")
+    // var box = document.getElementById("son3");
+    // var box1 = document.getElementById("son3");
+    // var box2 = document.getElementById("son4");
+    // var sox = document.getElementById("grandson");
+    // var aa = document.getElementById("aa");
+    // console.log(utils.ancestor(grandpa));
+
+</script>
+</body>
+</html>

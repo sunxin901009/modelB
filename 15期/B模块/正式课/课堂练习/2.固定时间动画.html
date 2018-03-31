@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <style type="text/css">
+        * {
+            margin: 0;
+            padding: 0;
+        }
+
+        #box {
+            position: absolute;
+            left: 100px;
+            top: 0;
+            width: 100px;
+            height: 100px;
+            background: lightseagreen;
+            border-radius: 50%;
+
+        }
+
+        input {
+            position: absolute;
+            width: 200px;
+            top: 300px;
+            height: 50px;
+            text-align: center;
+            line-height: 50px;
+            cursor: pointer;
+        }
+
+        #right {
+            left: 200px;
+        }
+    </style>
+</head>
+
+<body>
+
+<div id="box"></div>
+
+<input type="button" value="向右走" id="right">
+<script src="utils.js"></script>
+<script>
+    var oBox = document.getElementById("box"),
+        begin = {
+            left: 0,
+            top: 0
+        },
+        left = utils.win("clientWidth") - oBox.offsetWidth,
+        top = utils.win("clientHeight") - oBox.offsetHeight,
+        taget = {
+            left: left,
+            top: top
+        },
+        duration=2000,
+        time=0;
+    oBox.onclick=function () {
+        oBox.timer=setInterval(function () {
+            time+=17;
+            utils.css(oBox,"left",linear(time,duration,))
+        },17)
+    }
+
+
+    function linear(t, d, b, c) {
+        // t : 代表当前最新时间
+        // b : 开始的位置
+        // d : 总时间
+        // c : 总距离
+        return b + t / d * c;
+    }
+
+</script>
+</body>
+</html>

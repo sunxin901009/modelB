@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<script>
+    var ary = [12,15,63,42,33,96];
+    //求最大值和最小值
+    //1.假设法
+//    var max=ary[0];
+//    var min=ary[0];
+//    for (var i = 1; i < ary.length; i++) {
+//        var cur = ary[i];
+//        max<cur ? max=cur:null;
+//        min>cur ? min=cur:null;
+//    }
+//    console.log(max);
+//    console.log(min);
+    //2.apply
+    var max=Math.max.apply(null,ary);
+    var min=Math.min.apply(null,ary);
+    console.log(max);
+    console.log(min);
+
+</script>
+</body>
+</html>

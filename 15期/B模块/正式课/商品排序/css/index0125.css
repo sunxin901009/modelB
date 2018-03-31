@@ -1,0 +1,44 @@
+html,body{
+    height: 100%;
+    font-family: "\5FAE\8F6F\96C5\9ED1", Helvetica, sans-serif;
+    font-size: 18px;
+    background: #ccc;
+}
+.content{
+    width: 1200px;
+    margin: 30px auto;
+}
+.content .header{
+    height: 50px;
+    line-height: 50px;
+    background: white;
+    width: 100%;
+    padding-left: 20px;
+}
+.content .header a{
+    margin-right: 10px;
+    color: #555;
+}
+.content #list{
+    margin-top: 20px;
+    list-style: none;
+    overflow: hidden;
+}
+.content #list li{
+    width: 205px;
+    height: 330px;
+    padding: 10px;
+    margin: 0 10px 10px 0;
+    background: white;
+    float: left;
+}
+.content #list li img{
+    display: block;
+    width: 100%;
+}
+.content #list li span{
+    display: block;
+    height: 35px;
+    line-height: 35px;
+    font-size: 15px;
+}

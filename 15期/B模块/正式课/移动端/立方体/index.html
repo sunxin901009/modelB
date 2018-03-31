@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <style type="text/css">
+        *{
+            margin: 0;
+            padding: 0;
+        }
+        .main{
+            width: 350px;
+            height: 560px;
+            position: absolute;
+            left: 50%;
+            top: 50%;
+            margin: -280px 0 0 -160px;
+            background: url("img/zf_cubeBg.jpg") no-repeat;
+            perspective: 2000px;
+        }
+        .main .content{
+            width: 255px;
+            height: 255px;
+            position: absolute;
+            margin: -127.5px 0 0 -127.5px;
+            left: 50%;
+            top: 50%;
+            list-style: none;
+            animation: move 5s linear infinite;
+            transform-style: preserve-3d;
+
+        }
+        @keyframes move {
+            0%{
+                transform: scale(.6) rotateX(45deg) rotateY(45deg) translate(100px);
+            }
+            25%{
+                transform: scale(.8) rotateX(180deg) rotateY(180deg) translate(50px);
+            }
+            50%{
+                transform: scale(1.2) rotateX(360deg) rotateY(360deg) translate(0px);
+            }
+            75%{
+                transform: scale(.8) rotateX(180deg) rotateY(180deg) translate(50px);
+            }
+            100%{
+                transform: scale(.6) rotateX(45deg) rotateY(45deg) translate(100px);
+
+            }
+        }
+        .main .content li{
+            position: absolute;
+            width: 100%;
+            height: 100%;
+        }
+        .main .content li img{
+            width: 100%;
+            height: 100%;
+        }
+        .content li:nth-child(1){
+            transform: translateZ(-127.5px);
+        }
+        .content li:nth-child(2){
+            transform: translateY(127.5px) rotateX(90deg);
+        }
+        .content li:nth-child(3){
+            transform: translateZ(127.5px);
+        }
+        .content li:nth-child(4){
+            transform: translateY(-127.5px) rotateX(-90deg);
+        }
+        .content li:nth-child(5){
+            transform: translateX(-127.5px) rotateY(90deg);
+        }
+        .content li:nth-child(6){
+            transform: translateX(127.5px) rotateY(-90deg);
+        }
+    </style>
+</head>
+<body>
+<div class="main">
+    <ul class="content">
+        <li><img src="img/zf_cube1.png" alt=""></li>
+        <li><img src="img/zf_cube2.png" alt=""></li>
+        <li><img src="img/zf_cube3.png" alt=""></li>
+        <li><img src="img/zf_cube4.png" alt=""></li>
+        <li><img src="img/zf_cube5.png" alt=""></li>
+        <li><img src="img/zf_cube6.png" alt=""></li>
+    </ul>
+</div>
+</body>
+</html>

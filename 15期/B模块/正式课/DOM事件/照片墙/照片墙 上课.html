@@ -1,0 +1,116 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <style type="text/css">
+        * {
+            margin: 0;
+            padding: 0;
+        }
+
+        ul {
+            padding: 10px;
+            width: 480px;
+            height: 640px;
+            background: yellow;
+            margin: 10px auto;
+            list-style: none;
+            position: relative;
+        }
+
+        ul li {
+            width: 150px;
+            height: 150px;
+            float: left;
+            margin: 5px;
+            background: greenyellow;
+            -webkit-user-select: none;
+        }
+
+        ul li img {
+            -webkit-user-select: none;
+            -webkit-user-drag: none;
+            width: 150px;
+            height: 150px;
+            border: none;
+        }
+
+    </style>
+</head>
+<body>
+<ul>
+    <li><img src="img/1.png" alt=""></li>
+    <li><img src="img/2.png" alt=""></li>
+    <li><img src="img/3.png" alt=""></li>
+    <li><img src="img/4.png" alt=""></li>
+    <li><img src="img/5.png" alt=""></li>
+    <li><img src="img/6.png" alt=""></li>
+    <li><img src="img/7.png" alt=""></li>
+    <li><img src="img/8.png" alt=""></li>
+    <li><img src="img/9.png" alt=""></li>
+    <li><img src="img/10.png" alt=""></li>
+    <li><img src="img/11.png" alt=""></li>
+    <li><img src="img/12.png" alt=""></li>
+</ul>
+<script src="js/event.js"></script>
+<script src="js/evnetDrag.js"></script>
+<script>
+    var olis = document.getElementsByTagName("li");
+    //循环设置每个li的样式，li的父级参照物是ul
+    for (var i = olis.length-1; i >= 0; i--) {
+        olis[i].style.left = olis[i].offsetLeft + "px";
+        olis[i].style.top = olis[i].offsetTop + "px";
+        olis[i].style.position = "absolute";
+        olis[i].style.margin=0+"px";
+        new Drag(olis[i]).on("selfdragStart",isHit).on("selfdragdown",increaseZindex).on("selfdragend",changePosition)
+    }
+    //判断当前盒子是否和其他盒子发生碰撞，如果有碰撞，返回true，没有碰撞，返回false；
+    function isHit() {
+        //this-->指向Drag类的实例
+        this["hited"]=[];
+        var ele=this.ele;
+        for (var i = 0; i < olis.length; i++) {
+            var cur=olis[i];
+            if(ele===cur)continue;
+            if (ele.offsetLeft+ele.offsetWidth<cur.offsetLeft||ele.offsetTop+ele.offsetHeight<cur.offsetTop>0||ele.offsetLeft>cur.offsetLeft+cur.offsetWidth||ele.offsetTop>cur.offsetTop+cur.offsetHeight){
+                //进入里面说明不碰撞
+                olis[i].style.background="";
+            }else {
+                //进入里面说明碰撞
+                olis[i].style.background="pink";
+                this["hited"].push(cur);
+            }
+        }
+
+    }
+    //改变当前盒子的index
+    var zIndex=1;
+    function increaseZindex() {
+        this.ele.style.zIndex=++zIndex;
+    }
+    function changePosition() {
+        var ary=this["hited"];
+        for (var i = 0; i < ary.length; i++) {
+            var cur=ary[i];//每一个被碰撞的li
+            cur.distance=Math.pow(this.ele.offsetLeft-cur.offsetLeft,2)+Math.pow(this.ele.offsetTop-cur.offsetTop,2);
+            cur.style.background=null;
+        }
+        ary.sort(function (a,b) {
+            return a.distance-b.distance
+        });
+        if (ary.length){
+            this.ele.style.left=ary[0].style.left;
+            this.ele.style.top=ary[0].style.top;
+            ary[0].style.left=this.startX+"px";
+            ary[0].style.top=this.startY+"px";
+        }else {
+            this.ele.style.left=this.startX+"px";
+            this.ele.style.top=this.startY+"px";
+        }
+
+    }
+
+</script>
+</body>
+</html>

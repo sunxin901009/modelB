@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<script>
+    //utils 公用方法库
+    var utils=(function () {
+        //类数组转数组  兼容
+    function toArray(likeArray) {
+    var ary=[];
+    try{
+        ary=Array.prototype.slice.call(likeArray);
+    }catch (e){
+        for (var i = 0; i < likeArray.length; i++) {
+            var cur = likeArray[i];
+            ary.push(cur);
+        }
+    }
+    return ary;
+}
+//JSON字符串数据类型转对象数据类型
+    function toJSON(val) {
+        return "JSON" in window?JSON.parse(val):eval("("+val+")");
+    }
+    return {toArray:toArray,toJSON:toJSON}
+    })();
+</script>
+</body>
+</html>

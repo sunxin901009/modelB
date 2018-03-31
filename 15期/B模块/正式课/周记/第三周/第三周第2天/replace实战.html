@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<script>
+    //    var str = "201801101108";
+    //    var  ary = ["零","壹","贰","叁","肆","伍","陆","柒","捌","玖"
+    //    ];
+    //   str=str.replace(/\d/g,function () {
+    //       return ary[arguments[0]]
+    //   })
+    //    console.log(str);
+
+    var str = "2018-01-10 11:52:30";
+    var time = ["年", "月", "日", "时", "分", "秒"];
+    var i = 0;
+    //    var newStr=""
+    //    str=str.replace(/\d+/g,function () {
+    //        return newStr+=arguments[0]+time[i++]
+    //    });
+    //console.log(newStr);
+    //     str=str.replace(/[-:]/g,function () {
+    //         return time[i++]
+    //     });
+    //     str+=time[i];
+    //console.log(str);
+    var str = "my name  is {0},i am {1} years old,my hobby is {2}";
+    var ary = ["王云成", "18", "playing game"];
+    str = str.replace(/{(\d)}/g, function () {
+        return ary[arguments[1]];
+    });
+    str=str.replace(/([a-z])([a-z]*)/g,function () {
+        return arguments[1].toUpperCase()+arguments[2]
+    });
+    console.log(str);
+    // str ="my name  is {0},i am {1} years old,my hobby is {2}"
+    // 把所有单词的首字母换成大写；
+
+
+</script>
+</body>
+</html>

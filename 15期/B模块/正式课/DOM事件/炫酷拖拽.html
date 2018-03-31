@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <style type="text/css">
+        *{
+            margin:0;
+            padding:0;
+        }
+        div{
+            position:absolute;
+            width:100px;
+            height:100px;
+            background: pink;
+            border-radius: 50%;
+        }
+        #div1{
+            top:50px;
+        }
+        #div2{
+            top:200px;
+        }
+    </style>
+
+</head>
+<body>
+<div id="div1"></div>
+<div id="div2"></div>
+<script>
+    var div1=document.getElementById("div1"),
+        div2=document.getElementById("div2");
+    function down(e) {
+        e=e||window.event;
+        this["mL"]=e.clientX;
+        this["mT"]=e.clientY;
+        this["dL"]=parseFloat(this.offsetLeft);
+        this["dT"]=parseFloat(this.offsetTop);
+        if (this.captureEvents){
+            this.captureEvents()
+            this.onmousemove=move;
+            this.onmouseup=up;
+        }else {
+            var _this=this;
+            document.onmousemove=function (e) {
+                move.call(_this,e)
+            };
+            document.onmouseup=function (e) {
+                up.call(_this,e)
+            }
+        }
+    }
+    function move(e) {
+        e=e||window.event;
+        var maxL=document.documentElement.clientWidth-this.offsetWidth,
+            maxT=document.documentElement.clientHeight-this.offsetHeight;
+        if (e.clientX-this["mL"]+this["dL"]>maxL){
+            this.style.left=maxL+"px"
+        }else if(e.clientX-this["mL"]+this["dL"]<0){
+            this.style.left=0+"px"
+        }else {
+            this.style.left=e.clientX-this["mL"]+this["dL"]+"px";
+        }
+        if (e.clientY-this["mT"]+this["dT"]>maxT){
+            this.style.top=maxT+"px"
+        }else if(e.clientY-this["mT"]+this["dT"]<0){
+            this.style.top=0+"px"
+        }else {
+            this.style.top=e.clientY-this["mT"]+this["dT"]+"px"
+        }
+
+    }
+    function up(e) {
+        if (this.captureEvents){
+            this.releaseCapture()
+        }
+        document.onmousemove=null;
+        document.onmouseup=null;
+    }
+    div1.onmousedown=down;
+    function drop() {
+        
+    }
+
+</script>
+</body>
+</html>

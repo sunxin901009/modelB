@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <style type="text/css">
+        #box{
+            width: 150px;
+            height: 50px;
+            line-height: 50px;
+            text-align: center;
+            margin: 30px auto;
+            border: 3px solid lightseagreen;
+            border-radius: 8px;
+        }
+    </style>
+</head>
+<body>
+<div id="box"></div>
+<script>
+    var timer = document.getElementById("box");
+    var targeTime= new Date("2017/12/25 10:57:00");
+    function add(ccc) {
+        return ccc<10?"0"+ccc:ccc;
+    }
+    function count() {
+        var nowTime = new Date();
+        var diffTime = targeTime-nowTime;
+        if (diffTime<=0){
+            clearInterval(a);
+            return;
+        }
+        var hour = Math.floor(diffTime/(1000*60*60));
+        var min = Math.floor((diffTime-hour*1000*60*60)/(1000*60));
+        var sec = Math.floor((diffTime-hour*1000*60*60-min*1000*60)/1000);
+        timer.innerHTML=add(hour)+"  :  "+add(min)+"  :  "+add(sec);
+        //32行报错 timer not a function   innerHTML后面是等于号！！！！
+    }
+    count()
+   var a = setInterval(count,1000)
+</script>
+</body>
+</html>

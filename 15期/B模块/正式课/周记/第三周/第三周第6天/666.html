@@ -1,0 +1,19 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<script>
+    var str="my name is sun xin,my hobby is play"
+//    str=str.replace(/\b[a-z]/g,function () {
+//        return arguments[0].toUpperCase()
+//    })
+    str=str.replace(/([a-z])([a-z]+)/g,function () {
+        return arguments[1].toUpperCase()+arguments[2]
+    })
+    console.log(str);
+</script>
+</body>
+</html>

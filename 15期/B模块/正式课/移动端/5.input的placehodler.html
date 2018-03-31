@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<input type="text" data-place="请输入用户名">
+
+<input type="password" data-place="请输入密码">
+
+<input type="text" data-place="请输入用户名">
+<input type="text" a="1">
+
+<script>
+    // 自定义一个行内属性  data-place
+    var  inputList = document.getElementsByTagName("input");
+    var ary = [];
+    // 遍历页面中所有包含data-place行内属性的input，并且data-place带有值；
+    for(var i=0;i<inputList.length;i++){
+        var item = inputList[i];
+        if(item.getAttribute("data-place")){
+            ary.push(item);
+        }
+    }
+//    console.log(navigator.userAgent);
+    // 排除IE浏览器
+    if(!/(MSIE|Trident)/.test(navigator.userAgent)){
+        for(var i=0;i<ary.length;i++){
+            var  cur = ary[i];
+            cur.placeholder = cur.getAttribute("data-place");
+        }
+    }
+    // 解决IE的placeholder;
+    // for所有带有data-place ,每一个input需要创建出一个span；
+
+
+
+
+
+
+
+</script>
+</body>
+</html>

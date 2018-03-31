@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<div id="box1"></div>
+<!--kidfk[-->
+<div id="box"></div>
+<script>
+    var obox=document.getElementById("box")
+    function getBrother(curEle) {
+        var aa=curEle.previousSibling;
+        while(aa){
+            if (aa.nodeType===1){
+                return aa;
+            }
+            aa=aa.previousSibling;
+        }
+    }
+     var b =getBrother(obox);
+    console.log(b);
+</script>
+</body>
+</html>

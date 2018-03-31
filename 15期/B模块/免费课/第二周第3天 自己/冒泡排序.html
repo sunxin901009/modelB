@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+
+</head>
+<body>
+<script>
+    var ary = [12, 45, 11, 36, 89, 57, 66];
+    for (var i = 0; i < ary.length; i++) {
+        for (var j = 0; j < ary.length-1-i; j++) {
+            var flag=true;
+            if (ary[j]>ary[j+1]){
+                var temp=ary[j];
+                ary[j]=ary[j+1];
+                ary[j+1]=temp;
+                flag=false;
+            }
+        }
+        if (flag){
+            break;
+        }
+    }
+    console.log(ary);
+</script>
+</body>
+</html>

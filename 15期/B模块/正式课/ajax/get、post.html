@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<script>
+    var xhr=new XMLHttpRequest();//创建一个XMLHttpRequest的实例
+    console.log(xhr.readyState);
+    //2.打开路径
+    xhr.open("get","./package.json",true);//同步、异步
+    console.log(xhr.readyState);
+    //3.监听
+    xhr.onreadystatechange=function () {//只要状况码（readyState）改变就执行一次
+        //console.log(xhr.readyState);//2 3 4
+        if (xhr.readyState === 4 && xhr.status === 200) {
+            data = xhr.responseText
+        }
+    }
+    //4.发送请求
+    xhr.send(null);
+
+    //ajax 的请求方式 get post delete put....
+    //请求应用场景：
+    //1.get：一般从服务器获取大量数据；要显示页面的信息；
+    //2.delete:一般用于删除服务器上的某些信息；订单删除比较常用的是用ID，可以用post，发送ID;
+    //3.一般是客户端向服务端发送大量数据时用post；
+    //4.put：把资源放在服务器；不常用
+
+    //get和post的区别：
+    //get：
+    //1.get请求方式会把参数拼接在url的后面
+    //2.get安全性没有post高
+    //3.get把参数放在url后面，浏览器对地址栏的大小有一定限制；谷歌（8kb）火狐（7kb）IE（2kb）
+    //4.把参数放在url后面，容易走缓存，需要在参数后面拼接一个时间戳或随机数；
+    //post:
+    //1.post把参数放在请求体中
+    //2.post把参数放在请求体中，所以没有大小限制；一般项目中为了请求更快，也有一定限制；
+    //3.post不会走缓存
+    //4.如果考虑安全性一般用post
+
+</script>
+</body>
+</html>

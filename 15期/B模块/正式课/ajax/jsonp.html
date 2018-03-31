@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<script src="ajax.js"></script>
+<script>
+    // ajax({
+    //     url:"http://matchweb.sports.qq.com/kbs/calendar?columnId=100000",
+    //     type:"get",
+    //     dataType:"json",
+    //     success:function (data) {
+    //         data.log
+    //     }
+    // })
+function fn(data) {
+    console.log(data);
+}
+</script>
+<script src="http://matchweb.sports.qq.com/kbs/calendar?columnId=100000&callback=fn"></script>
+</body>
+</html>

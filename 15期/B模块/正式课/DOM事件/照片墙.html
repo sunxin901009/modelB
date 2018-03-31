@@ -1,0 +1,156 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <style type="text/css">
+        *{
+            margin: 0;
+            padding: 0;
+        }
+        #container{
+            position: relative;
+            width: 650px;
+            height: 650px;
+            margin: 50px auto;
+            border: 5px solid lightskyblue;
+            background: lightsteelblue;
+        }
+        #container div{
+            position: absolute;
+            width: 200px;
+            height: 200px;
+            margin: 8px 0 0 8px;
+            border: 1px solid lightcoral;
+            overflow: fragments;
+        }
+        #box1{
+            top: 0;
+            left: 0;
+            background: url("images/1.jpg") center;
+            background-size: cover;
+        }
+        #box2{
+            top: 0;
+            left: 33.3%;
+            background: url("images/2.jpg") center;
+            background-size: cover;
+        }
+        #box3{
+            top: 0;
+            left: 66.6%;
+            background: url("images/3.jpg") center;
+            background-size: cover;
+        }
+        #box4{
+            top: 33.3%;
+            left: 0;
+            background: url("images/4.jpg") center;
+            background-size: cover;
+        }
+        #box5{
+            top: 33.3%;
+            left: 33.3%;
+            background: url("images/5.jpg") center;
+            background-size: cover;
+        }
+        #box6{
+            top: 33.3%;
+            left: 66.6%;
+            background: url("images/6.jpg");
+            background-size: cover;
+        }
+        #box7{
+            top: 66.6%;
+            left: 0;
+            background: url("images/7.jpg");
+            background-size: cover;
+        }
+        #box8{
+            top: 66.6%;
+            left: 33.3%;
+            background: url("images/8.jpg");
+            background-size: cover;
+        }
+        #box9{
+            top: 66.6%;
+            left: 66.6%;
+            background: url("images/9.jpg");
+            background-size: cover;
+        }
+        .select{
+            opacity: .5;
+        }
+    </style>
+</head>
+<body>
+<div id="container">
+    <div id="box1"></div>
+    <div id="box2"></div>
+    <div id="box3"></div>
+    <div id="box4"></div>
+    <div id="box5"></div>
+    <div id="box6"></div>
+    <div id="box7"></div>
+    <div id="box8"></div>
+    <div id="box9"></div>
+</div>
+<script>
+    var cont=document.getElementById("container"),
+    boxList=cont.getElementsByTagName("div");
+    for (var i = 0; i < boxList.length; i++) {
+        boxList[i].index=i;
+        boxList[i].onmousedown=function (e) {
+            e=e||window.event;
+            down.call(this,e);
+        };
+
+    }
+    function down(e) {
+        this.style.zIndex=99;
+        this.mx=e.clientX;
+        this.ml=e.clientY;
+        this.beginX=this.offsetLeft;
+        this.beginY=this.offsetTop;
+        var _this=this;
+        document.onmousemove=function (e) {
+            move.call(_this,e)
+        };
+        document.onmouseup=function (e) {
+            up.call(_this,e)
+        }
+    }
+    function move(e) {
+        var maxL=cont.offsetWidth-this.offsetWidth-8;
+        if (e.clientX-this.mx+this.beginX>=maxL){
+            this.style.left=maxL+"px";
+        }else if (e.clientX-this.mx+this.beginX<=0){
+            this.style.left=0+"px";
+        }else {
+            this.style.left=e.clientX-this.mx+this.beginX+"px";
+        }
+        if (e.clientY-this.ml+this.beginY>=maxL){
+            this.style.top=maxL+"px";
+        }else if (e.clientY-this.ml+this.beginY<=0){
+            this.style.top=0+"px";
+        }else {
+            this.style.top=e.clientY-this.ml+this.beginY+"px";
+        }
+
+
+    }
+    function up(e) {
+        e=e||window.target;
+        for (var i = 0; i < boxList.length; i++) {
+            boxList[i].className=null;
+        }
+        this.style.zIndex=1;
+        document.onmousemove=null;
+        document.onmouseup=null;
+
+    }
+
+
+</script>
+</body>
+</html>

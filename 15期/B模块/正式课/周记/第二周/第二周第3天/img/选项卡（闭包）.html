@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<script>
+    //    for (var i = 0; i < olis.length; i++) {
+    //        olis[i].index=i;
+    //        olis[i].onclick = function () {
+    //            for (var j = 0; j < olis.length; j++) {
+    //                olis[j].className=null;
+    //                odivs[j].className=null;
+    //            }
+    //            this.className="select";
+    //            odivs[this.index].className="select"
+    //        }
+    //    }
+    function change(n) {
+        for (var i = 0; i < olis.length; i++) {
+            olis[i].className = null;
+            odivs[i].className = null;
+        }
+        olis[n].className = "select";
+        odiv[n].className = "select";
+    }
+        for (var j = 0; j < olis.length; j++) {
+           olis[j].onclick= (function (k) {
+               return function () {
+                   change(k)
+               }
+           })(j)
+        }
+//    for (var i = 0; i < olis.length; i++) {
+//        (function (j) {
+//            olis[i].onclick = function () {
+//                change(j)
+//            }
+//        })(i);
+//    }
+</script>
+</body>
+</html>

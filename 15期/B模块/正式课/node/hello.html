@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<div id="app">
+    <ul>
+        <li v-for="(item,index) of animal">{{item.name}}{{index+1}}
+            <ul>
+                <li v-for="(a,sonIndex) in item.color">
+                    {{index+1}}.{{sonIndex+1}} {{a}}
+                </li>
+            </ul>
+        </li>
+    </ul>
+    <ul>
+        <li v-for="(value,key,index) in obj">
+            {{index+1}}.{{key}} : {{value}}
+        </li>
+    </ul>
+</div>
+<script src="./node_modules/vue/dist/vue.js"></script>
+<script>
+    let vm=new Vue({
+        el:"#app",
+        data:{
+            animal:[{name:"老虎",color:["green","red"]},{name:"猴子",color:["yellow","pink","blue"]},{name:"大象",color:["white","black"]}],
+            obj:{name:"sx",age:"28",s:"man"}
+        }
+    })
+</script>
+</body>
+</html>

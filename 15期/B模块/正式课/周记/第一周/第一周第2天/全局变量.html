@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<script>
+    //webstom:代码的编辑器
+    //浏览器：代码的解析器
+    //全局作用域：当浏览器打开页面时，首先会形成一个供代码运行的环境；然后，代码从上到下开始加载，这个环境就是全局的作用域。
+    //一个页面对应一个全局作用域；
+    //全局作用域是栈内存（作用域都存在栈内存），存储基本数据类型的值
+    //    var num=100;
+    //    function fn() {
+    //        //函数执行形成私有作用域，储存基本数据类型的值
+    //        var a=10;
+    //        console.log(num);//100
+    //    }
+    //    fn()
+    //    console.log(a);//undefind
+    //私有作用域里面能够输出外面的值，外面不能输出私有作用域里面的值（函数闭包机制）
+//    var a = 10;
+//    function fn() {
+//        a = 100;
+//    }
+//    fn()
+//    console.log(a);//100
+    var a=10;
+    function a() {
+
+    }
+    a();
+    console.log(a);
+
+</script>
+</body>
+</html>

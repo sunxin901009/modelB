@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title></title>
+</head>
+<body>
+<script>
+    var ary=[12,16,56,27,46,35,11]
+    function quick(ary) {
+        if(ary.length<1){
+            return ary;
+        }
+        var center=Math.floor(ary.length/2)
+        var centerAcc=ary.splice(center,1)[0];
+        var leftAry=[];
+        var rightAry=[];
+        for (var i = 0; i < ary.length; i++) {
+            var cur = ary[i];
+            if (cur<centerAcc){
+                leftAry.push(cur);
+            }
+            if (cur>centerAcc){
+                rightAry.push(cur)
+            }
+        }
+       return quick(leftAry).concat(centerAcc,quick(rightAry))
+
+    }
+    console.log(quick(ary));
+</script>
+</body>
+</html>

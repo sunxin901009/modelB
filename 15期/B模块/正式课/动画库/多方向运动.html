@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <style type="text/css">
+        *{
+            margin: 0;
+            padding: 0;
+        }
+        #box{
+            position: absolute;
+            left: 0;
+            top: 0;
+            width: 100px;
+            height: 100px;
+            border-radius: 50%;
+            background: lightseagreen;
+            opacity: 1;
+        }
+    </style>
+</head>
+<body>
+<div id="box"></div>
+<script src="utils.js"></script>
+<script>
+    var obox=document.getElementById("box");
+    //获取 target begin change duration
+    var target={
+        left:utils.win("clientWidth")-obox.offsetWidth,
+        top:utils.win("clientHeight")-obox.offsetHeight,
+        opacity:0.4
+    };
+    var begin={
+        left:utils.css(obox,"left"),
+        top:utils.css(obox,"top"),
+        opacity:utils.css(obox,"opacity")
+    };
+    var change={};
+    for (var key in target) {
+        change[key]=target[key]-begin[key]
+    };
+    var duration=2000;
+    var time=0;
+    obox.timer=setInterval(function () {
+        time+=17;
+        if (time>=duration){
+            utils.css(obox,target);
+            clearInterval(obox.timer);
+            return;
+        }
+        var curPos={};
+        for (var key in target) {
+            curPos[key]=liner(begin[key],time,duration,change[key])
+        }
+        utils.css(obox,curPos)
+    },17);
+    function liner(begin,time,duration,change) {
+        return time/duration*change+begin;
+    }
+</script>
+</body>
+</html>

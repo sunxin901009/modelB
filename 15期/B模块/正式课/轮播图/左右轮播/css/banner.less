@@ -1,0 +1,71 @@
+@import "reset";
+#container{
+  text-align: center;
+  position: relative;
+  @H:300px;
+  @W:1000px;
+  width: @W;
+  height: @H;
+  margin: 30px auto;
+  overflow: hidden;
+  background: url("../img/default.gif") no-repeat center center #eee;
+  #wrapper{
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: @W*10;
+    height: @H;
+    overflow: hidden;
+    .slide{
+      float: left;
+      width: @W;
+      height: @H;
+      img{
+        width: @W;
+        height: @H;
+      }
+    }
+  }
+  #focus{
+    position: relative;
+    top: 270px;
+    display: inline-block;
+    height: 18px;
+    border-radius: 18px;
+    background: rgba(0,0,0,.3);
+    overflow: hidden;
+    li{
+      float: left;
+      width: 18px;
+      height: 8px;
+      line-height: 8px;
+      border-radius: 8px;
+      margin: 5px;
+      background: white;
+      cursor: pointer;
+      &.select{
+        background: #fd8c84;
+      }
+    }
+  }
+  .arrow{
+    display: none;
+    position: absolute;
+    top: 50%;
+    width: 30px;
+    height: 45px;
+    background: url("../img/pre.png") no-repeat;
+    margin-top: -15px;
+    opacity: .3;
+    &:hover{
+      opacity: .7;
+    }
+    &.left{
+      left: 0;
+    }
+    &.right{
+      right: 0;
+      background-position: -49px 0;
+    }
+  }
+}

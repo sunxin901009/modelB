@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <style type="text/css">
+        * {
+            margin: 0;
+            padding: 0;
+        }
+
+        ul {
+            width: 500px;
+            margin: 30px auto;
+            list-style: none;
+        }
+
+        ul li {
+            width: 100%;
+            height: 40px;
+            line-height: 40px;
+            text-align: center;
+            border: 1px solid lightgreen;
+        }
+    </style>
+</head>
+<body>
+<ul>
+    <li>19岁登陆皇马，一夜暴富猎艳被索2000欧</li>
+    <li>19岁登陆皇马，一夜暴富猎艳被索2000欧</li>
+    <li>19岁登陆皇马，一夜暴富猎艳被索2000欧</li>
+    <li>19岁登陆皇马，一夜暴富猎艳被索2000欧</li>
+    <li>19岁登陆皇马，一夜暴富猎艳被索2000欧</li>
+    <li>19岁登陆皇马，一夜暴富猎艳被索2000欧</li>
+    <li>19岁登陆皇马，一夜暴富猎艳被索2000欧</li>
+    <li>19岁登陆皇马，一夜暴富猎艳被索2000欧</li>
+    <li>19岁登陆皇马，一夜暴富猎艳被索2000欧</li>
+    <li>19岁登陆皇马，一夜暴富猎艳被索2000欧</li>
+    <li>19岁登陆皇马，一夜暴富猎艳被索2000欧</li>
+</ul>
+<script>
+    var oLis = document.getElementsByTagName("li");
+    for (var i = 0; i < oLis.length; i++) {
+        if (i % 3 === 0) {
+            oLis[i].style.background = "lightCyan"
+        }
+        if (i % 3 === 1) {
+            oLis[i].style.background = "lightBlue"
+        }
+        if (i % 3 === 2) {
+            oLis[i].style.background = "lightPink"
+        }
+        oLis[i].beforColor = oLis[i].style.background;
+        oLis[i].index = i;
+        oLis[i].onmouseover = function () {
+            this.style.background = "yellow";
+        }
+        oLis[i].onmouseout = function () {
+            this.style.background = this.beforColor;
+        }
+        oLis[i].onclick = function () {
+            alert(this.index+1);
+        }
+
+    }
+</script>
+</body>
+</html>

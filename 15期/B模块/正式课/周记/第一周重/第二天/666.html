@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <style type="text/css">
+        #box{
+            width: 200px;
+            height: 200px;
+            background: lightskyblue;
+            border: 10px solid cornflowerblue;
+            margin: 20px auto;
+        }
+    </style>
+</head>
+<body>
+<div id="box"></div>
+<script>
+var obox=document.getElementById("box")
+console.log(getComputedStyle(obox));
+var reg=/^(width|height|((margin|padding)?(top|right|bottom|left)?))$/i;
+</script>
+</body>
+</html>

@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <style type="text/css">
+        #box {
+            width: 150px;
+            height: 50px;
+            line-height: 50px;
+            text-align: center;
+            border: 2px solid lightseagreen;
+            border-radius: 8px;
+            margin: 50px auto;
+        }
+    </style>
+</head>
+<body>
+<div id="box"></div>
+<script>
+    var tiger = document.getElementById("box");
+    function getCode() {
+        var str = "0123456789abcdefghijklmnopqrstuvwsyzABCDEFGHIJKLMNOPQRSTUVWSYZ"
+        var newStr = "";
+        var i = 0;
+        while (i<4){
+            var index=Math.floor(Math.random()*61);
+            var gg=str[index];
+            if (newStr.toLowerCase().indexOf(gg.toLowerCase())===-1){
+                newStr+=gg;
+                i++;
+            }
+        }
+        tiger.innerHTML = newStr;
+    }
+getCode();
+tiger.onclick =getCode;
+</script>
+</body>
+</html>

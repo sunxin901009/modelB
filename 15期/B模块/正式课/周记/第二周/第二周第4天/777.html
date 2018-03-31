@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<div></div>
+<div></div>
+<div></div>
+<div></div>
+<script>
+    //类数组转数组
+    var utils=(function () {
+        function toArray(like) {
+            var ary = [];
+            try {
+                ary = Array.prototype.slice.call(like);
+            } catch (k) {
+                for (var i = 0; i < like.length; i++) {
+                    var cur = like[i];
+                    ary.push(cur);
+                }
+            }
+            return ary;
+        }
+        //JSON字符串转JSON对象
+        function toJSON(air) {
+            return "JSON" in window ? JSON.parse(air) : eval("(" + air + ")");
+        }
+        return {toArray:toArray,toJSON:toJSON};
+    })();
+
+</script>
+</body>
+</html>

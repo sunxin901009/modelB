@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<script>
+    function change() {
+        for (var i = 0; i < olis.length; i++) {
+            olis[i].className=null;
+
+        }
+    }
+    for (var i = 0; i < olis.length; i++) {
+        var cur = olis[i];
+        cur.onclick =(function () {
+            return change()
+        })()
+    }
+
+
+
+</script>
+</body>
+</html>

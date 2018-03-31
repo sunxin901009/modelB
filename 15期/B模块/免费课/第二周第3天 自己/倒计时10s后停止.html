@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <style type="text/css">
+        #box {
+            width: 200px;
+            height: 50px;
+            line-height: 50px;
+            text-align: center;
+            margin: 30px auto;
+            border: 2px solid lightblue;
+            border-radius: 8px;
+        }
+    </style>
+</head>
+<body>
+<div id="box"></div>
+<script>
+    var div = document.getElementById("box");
+    function count() {
+        var str = "";
+        var i = 0;
+        while (i < 4) {
+            str += Math.round(Math.random() * 9);
+            i++;
+
+        }
+        div.innerHTML = str;
+    }
+    count();
+    var b = setInterval(function () {
+        count();
+
+    }, 1000);
+    setTimeout(function () {
+        clearInterval(b)
+    }, 10000)
+
+</script>
+</body>
+</html>

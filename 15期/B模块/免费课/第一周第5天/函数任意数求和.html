@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<script>
+    var total = 0;
+    function sum() {
+        for (var i = 0; i < arguments.length; i++) {
+            var cur = Number(arguments[i])
+            if (isNaN(cur)==false){
+                total +=cur;
+            }
+        }
+        return total;
+    }
+  var  a =sum(12,23,"12px","55",null,87,undefined,{},[]) ;
+    console.log(a);
+</script>
+</body>
+</html>

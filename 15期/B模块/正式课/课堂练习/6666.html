@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <style type="text/css">
+        html {
+            font-size: 100px;
+        }
+
+        #box {
+            width: 1rem;
+            height: 1rem;
+            background: lightcoral;
+            opacity: .5;
+            margin: .2rem auto;
+        }
+    </style>
+</head>
+<body>
+<div id="box"></div>
+<script>
+    var obox = document.getElementById("box");
+    //onclick存在300ms延迟
+    //触摸开始
+    obox.addEventListener("touchstart", fn1, false);
+    //触摸中
+    obox.addEventListener("touchmove", fn2, false);
+    //触摸结束
+    obox.addEventListener("touchend", fn3, false);
+
+    //移动端：TouchEvent  pc端：MouseEvent
+    //e.touches：记录当前手指触摸的一些信息；距离屏幕x轴和y轴方向距离屏幕左边和上边的距离
+    //事件对象：事件源、阻止事件的冒泡传播、事件的默认行为
+    function fn1(e) {
+        console.log(e);
+        var point = e.touches[0];//单手指事件信息
+        this["startX"] = point.clientX;
+        this["startY"] = point.clientY;
+    }
+
+    function fn2(e) {
+        var point = e.touches[0];
+        if (Math.abs(point.clientX - this["startX"]) > 30 || Math.abs(point.clientY - this["startY"]) > 30) {
+            this["move"] = true;
+        }
+    }
+
+    //touches[0]：这个属性只有当手指触摸屏幕时。才会有这个属性；touchend手指离开屏幕,导致该方法无法获取到值；
+    //changedTouches：在touched想获取手指的触摸信息，需要changedTouches
+    function fn3(e) {
+        if (this["move"]) {
+            this.style.opacity = 1;
+            this.style.transition = "all 1s linear";
+            this["move"] = false;
+        } else {
+            setTimeout(() => {
+                this.style.transition = "0s";
+                this.style.transform = "rotate(0deg)"
+            }, 1000);
+            this.style.transition = "all 1s linear";
+            this.style.transform = "rotate(360deg)"
+
+        }
+    }
+
+    function computed() {
+        var winW = document.documentElement.clientWidth,
+            fontSize = winW / 7.2;
+        document.documentElement.style.fontSize = fontSize + "px";
+    }
+    computed();
+    window.onresize = computed;
+
+</script>
+</body>
+</html>

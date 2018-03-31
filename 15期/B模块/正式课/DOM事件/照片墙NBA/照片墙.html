@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <style type="text/css">
+        *{
+            margin: 0;
+            padding: 0;
+        }
+        ul{
+            list-style: none;
+            width: 615px;
+            height: 615px;
+            margin: 10px auto;
+            position: relative;
+            background: url("images/11.jpg") repeat center;
+            border: 1px solid lightseagreen;
+        }
+        ul li{
+            float: left;
+            width: 180px;
+            height: 180px;
+            border: 2px solid lightsteelblue;
+            margin: 10px;
+            -webkit-user-select: none;
+            cursor: move;
+        }
+        ul li img{
+            width: 180px;
+            height: 180px;
+            border: none;
+            -webkit-user-select: none;
+            -webkit-user-drag: none;
+        }
+    </style>
+</head>
+<body>
+<ul>
+    <li><img src="img/1.jpg" alt=""></li>
+    <li><img src="img/2.jpg" alt=""></li>
+    <li><img src="img/3.jpg" alt=""></li>
+    <li><img src="img/4.jpg" alt=""></li>
+    <li><img src="img/5.jpg" alt=""></li>
+    <li><img src="img/6.jpg" alt=""></li>
+    <li><img src="img/7.jpg" alt=""></li>
+    <li><img src="img/8.jpg" alt=""></li>
+    <li><img src="img/9.jpg" alt=""></li>
+</ul>
+<script src="js/event.js"></script>
+<script src="js/eventDrag.js"></script>
+<script>
+var olis=document.getElementsByTagName("li");
+for (var i = olis.length-1; i >=0; i--) {
+    var cur = olis[i];
+    cur.style.left=cur.offsetLeft+"px";
+    cur.style.top=cur.offsetTop+"px";
+    cur.style.position="absolute";
+    cur.style.margin=0+"px";
+    new Drag(olis[i]).on("selfDragStart",isHite).on("selfDragDown",addIndex).on("selfDragEnd",changPos)
+}
+function isHite() {
+    //this-->实例
+    var ele=this.ele;
+    this.hited=[];
+    for (var i = 0; i < olis.length; i++) {
+        var cur = olis[i];
+        if (cur===ele)continue;
+        if (ele.offsetLeft+ele.offsetWidth<cur.offsetLeft||ele.offsetTop+ele.offsetHeight<cur.offsetTop||ele.offsetLeft>cur.offsetLeft+cur.offsetWidth||ele.offsetTop>cur.offsetTop+cur.offsetHeight
+        ){//没碰撞
+            cur.style.opacity=1;
+        }else {//碰撞
+            cur.style.opacity=0.8;
+            this.hited.push(cur);
+        }
+
+    }
+}
+var zIndex=0;
+function addIndex() {
+    this.ele.style.zIndex=++zIndex;
+}
+function changPos() {
+    var ary=this.hited;
+    for (var i = 0; i < ary.length; i++) {
+        ary[i].distance=Math.pow(this.ele.offsetLeft-ary[i].offsetLeft,2)+Math.pow(ary[i].offsetTop-this.ele.offsetTop,2)
+        ary[i].style.opacity=1;
+    }
+    ary.sort(function (a,b) {
+        return a.distance-b.distance
+    });
+    this.ele.style.left=ary[0].style.left;
+    this.ele.style.top=ary[0].style.top;
+    ary[0].style.left=this.startX+"px";
+    ary[0].style.top=this.startY+"px";
+}
+
+
+</script>
+</body>
+</html>

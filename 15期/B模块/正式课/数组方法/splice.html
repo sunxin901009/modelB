@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>splice</title>
+</head>
+<body>
+<script>
+
+    Array.prototype.splice=function (a,b,c) {
+        var ary=[];
+        if (a===undefined){
+            return ary
+        }
+        //debugger
+        if (a<-this.length){
+            a=0
+        }
+        if (a>-this.length && a<0){
+            a=a+this.length
+        }
+        if (a>0 && a<this.length){
+           a=a
+        }
+        if (a>this.length){
+            a=this.length
+        }
+        if (b<=0){
+            a=this.length
+        }
+        if (b>0 && a+b<this.length){
+            this.length=a+b;
+        }
+
+       var newAry=[];
+        for (var i = a; i < this.length; i++) {
+                newAry[i-a]=this[i];
+        }
+        var newAry1=[];
+        for (var j = 0; j < a; j++) {
+              newAry1[j]=this[j]
+        }
+        //原来数组length找不到了
+        for (var k = a+b; k < ; k++) {
+            newAry1[newAry1.length]=this[k]
+        }
+        for (var p = 0; p < newAry1.length; p++) {
+            this[p]=newAry1[p]
+        }
+        this.length=this.length-b;
+        return newAry;
+
+
+    };
+    var ary=[0,1,2,3,4,5,6,7,8];
+    console.log(ary.splice(3,2));
+    console.log(ary);
+
+
+</script>
+</body>
+</html>

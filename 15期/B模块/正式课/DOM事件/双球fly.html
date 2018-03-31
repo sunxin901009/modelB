@@ -1,0 +1,157 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <style type="text/css">
+        * {
+            margin: 0;
+            padding: 0;
+        }
+        div{
+            user-select: none;
+        }
+        #div1 {
+            position: absolute;
+            width: 80px;
+            height: 80px;
+            background: lightseagreen;
+            top: 50px;
+            border-radius: 50%;
+        }
+
+        #div2 {
+            position: absolute;
+            width: 80px;
+            height: 80px;
+            background: lightsalmon;
+            top: 150px;
+            border-radius: 50%;
+        }
+    </style>
+</head>
+<body>
+<div id="div1"></div>
+<div id="div2"></div>
+<script>
+    var div1 = document.getElementById("div1"),
+        div2 = document.getElementById("div2");
+    div1.onmousedown = down;
+    div2.onmousedown = down;
+
+    function down(e) {
+        e = e || window.event;
+        this.mX = e.clientX;
+        this.mY = e.clientY;
+        this.dX = parseFloat(this.offsetLeft);
+        this.dY = parseFloat(this.offsetTop);
+        var _this = this;
+        if (this.setCapture) {
+            this.setCapture();
+            this.onmousemove = move;
+            this.onmouseup = up;
+        } else {
+            document.onmousemove = function (e) {
+                move.call(_this, e)
+            };
+            document.onmouseup = function (e) {
+                up.call(_this, e)
+            };
+        }
+    }
+
+    function move(e) {
+        var maxL = document.documentElement.clientWidth - this.offsetWidth,
+            maxT = document.documentElement.clientHeight - this.offsetHeight;
+        if (e.clientX - this.mX + this.dX <= 0) {
+            this.style.left = 0 + "px";
+        } else if (e.clientX - this.mX + this.dX > maxL) {
+            this.style.left = maxL + "px";
+        } else {
+            this.style.left = e.clientX - this.mX + this.dX + "px";
+        }
+        if (e.clientY - this.mY + this.dY <= 0) {
+            this.style.top = 0 + "px";
+        } else if (e.clientY - this.mY + this.dY > maxT) {
+            this.style.top = maxT + "px";
+        } else {
+            this.style.top = e.clientY - this.mY + this.dY + "px";
+        }
+        getSpeed.call(this)
+    }
+
+    function up(e) {
+        if (this.setCapture) {
+            releaseCapture();
+            this.onmousemove = null;
+            this.onmouseup = null;
+        } else {
+            document.onmousemove = null;
+            document.onmouseup = null;
+        }
+        drop.call(this);
+        fly.call(this)
+    }
+
+    function drop() {
+        if (!this.dropSpeed) {
+            this.dropSpeed = 2;
+        } else {
+            clearTimeout(this.dropTimer);
+            this.dropSpeed += 9.8;
+        }
+        this.dropSpeed *= 0.98;
+        var curP = this.offsetTop + this.dropSpeed,
+            maxT = document.documentElement.clientHeight - this.offsetHeight
+        if (curP >= maxT) {
+            this.style.top = maxT + "px";
+            this.dropSpeed *= -1;
+            this.flag++;
+        } else {
+            this.style.top = curP + "px";
+            this.flag = 0;
+        }
+        if (this.flag < 2) {
+            this.dropTimer = setTimeout(handThis(this, drop), 18);
+        }
+
+    }
+
+    function handThis(obj, fn) {
+        return function () {
+            fn.call(obj)
+        }
+    }
+
+    function getSpeed() {
+        if (this.prePos === 0) {
+            this.prePos = this.offsetLeft;
+        } else {
+            this.flySpeed = this.offsetLeft - this.prePos;
+            this.prePos = this.offsetLeft;
+        }
+    }
+    function fly() {
+        clearTimeout(this.flyTimer)
+        var maxL=document.documentElement.clientWidth-this.offsetWidth,
+            curL=this.flySpeed+this.offsetLeft;
+        this.flySpeed*=0.97;
+        if (curL>=maxL){
+            this.style.left=maxL+"px";
+            console.log(this.flySpeed);
+            this.flySpeed*=-1;
+            console.log(this.flySpeed);
+        }else if(curL<=0){
+            this.style.left=0+"px";
+            this.flySpeed*=-1;
+        } else {
+            this.style.left=curL+"px";
+        }
+        if (Math.abs(this.flySpeed)>0.5){
+            this.flyTimer=setTimeout(handThis(this,fly),18)
+        }
+
+    }
+</script>
+</body>
+</html>

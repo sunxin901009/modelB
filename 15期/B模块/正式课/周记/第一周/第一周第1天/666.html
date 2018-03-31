@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<button>点一下试试</button>
+<p>点你咋的</p>
+<p>就点你了</p>
+<p>点你咋的</p>
+<p>就点你了</p>
+<p>点你咋的</p>
+<p>就点你了</p>
+<p>点你咋的</p>
+<p>就点你了</p>
+</body>
+<script>
+    
+    // function getBro(curEle) {
+    //     if ("previousElementSibling" in curEle) {
+    //         return curEle.previousElementSibling
+    //     }
+    //     var p = curEle.previousSibling;
+    //     while (p) {
+    //         if (p.nodeType === 1) {
+    //             return p;
+    //         }
+    //         p = p.previousSibling;
+    //     }
+    // }5
+    // getBro(curEle)
+    // function t() {
+    //     console.dir(arguments);
+    //     console.log(arguments instanceof Object);
+    // }
+    // t()
+
+    // var ary = [1, 1, 1, 2, 3, 4, 5];
+    // Array.prototype.distinct = function () {
+    //     var obj = {};
+    //     for (var i = 0; i < this.length; i++) {
+    //         var cur = this[i];
+    //         if (obj[cur] === cur) {
+    //             this[i] = this[this.length - 1];
+    //             this.length--;
+    //             i--;
+    //             continue;
+    //         }
+    //         obj[cur] = cur;
+    //     }
+    //     return this;
+    // };
+    // console.log(ary.distinct());
+    function sum(a,b) {
+        console.log(this);
+        console.log(a, b);
+    }
+    sum.apply(null,[[1],[2]])
+
+</script>
+</html>

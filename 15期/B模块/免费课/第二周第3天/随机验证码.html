@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <style type="text/css">
+        #box {
+            width: 150px;
+            height: 50px;
+            line-height: 50px;
+            text-align: center;
+            border: 2px solid lightseagreen;
+            border-radius: 8px;
+            margin: 50px auto;
+        }
+    </style>
+</head>
+<body>
+<div id="box"></div>
+<script>
+   var tig = document.getElementById("box");
+    function getCode() {
+        var a ="0123456789abcdefghijklmnopqrstuvwsyzABCDEFGHIJKLMNOPQRSTUVWSYZ";
+        var b ="";
+        i=0;
+        while (i<5){
+            var index=Math.round(Math.random()*61);
+            b+=a[index];
+            i++;
+        }
+        tig.innerHTML = b;
+    }
+    getCode();
+    tig.onclick = getCode;
+</script>
+</body>
+</html>

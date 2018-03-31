@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>concat</title>
+</head>
+<body>
+<script>
+    Array.prototype.concat=function () {
+       if (arguments.length===0){
+           return this;
+       }else{
+           var newAry=[];
+           for (var j = 0; j < this.length; j++) {
+               newAry[newAry.length]=this[j]
+           }
+           for (var i = 0; i < arguments.length; i++) {
+               var cur = arguments[i];
+               newAry[newAry.length]=cur;
+           }
+           return newAry;
+       }
+    };
+    var ary=[0,1,2,3,4,5,6,7,8];
+    console.log(ary.concat(2,8));
+    console.log(ary);
+</script>
+</body>
+</html>

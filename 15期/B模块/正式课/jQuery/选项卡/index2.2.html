@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <style type="text/css">
+        *{
+            margin: 0;
+            padding: 0;
+        }
+        #container{
+            width: 400px;
+            margin: 50px auto;
+            border: 2px solid lightgrey;
+        }
+        #container ul{
+            list-style: none;
+            overflow: hidden;
+        }
+        #container ul li{
+            float: left;
+            width: 50px;
+            height: 30px;
+            line-height: 30px;
+            margin: 5px 8px;
+            text-align: center;
+            border: 1px solid lightskyblue;
+            cursor: pointer;
+        }
+        #container div{
+            display: none;
+            width: 390px;
+            height: 390px;
+            line-height: 390px;
+            border: 1px solid lightsalmon;
+            text-align: center;
+            margin: 0 4px;
+        }
+        #container ul .select{
+            background: lightcyan;
+        }
+        #container .select{
+            display: block;
+        }
+    </style>
+</head>
+<body>
+<div id="container">
+    <ul>
+        <li class="select">A</li>
+        <li>B</li>
+        <li>C</li>
+    </ul>
+    <div class="select">新闻</div>
+    <div>体育</div>
+    <div>娱乐</div>
+</div>
+<script src="jquery-1.11.3.js"></script>
+<script>
+    $("#container li").click(function () {
+        var index=$(this).index();
+        $(this).addClass("select").siblings().removeClass();
+        $("#container div").eq(index).addClass("select").siblings().removeClass();
+    })
+
+
+</script>
+</body>
+</html>

@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <style type="text/css">
+        * {
+            margin: 0;
+            padding: 0;
+        }
+
+        #box {
+            width: 300px;
+            margin: 30px auto;
+            border: 2px dashed lightblue;
+        }
+
+        #box ul {
+            overflow: hidden;
+        }
+
+        #box ul li {
+            list-style: none;
+            width: 50px;
+            height: 30px;
+            line-height: 30px;
+            border: 1px solid lightseagreen;
+            float: left;
+            margin-left: 5px;
+            text-align: center;
+            cursor: pointer;
+        }
+        #box div {
+            display: none;
+            width: 300px;
+            height: 300px;
+            line-height: 300px;
+            text-align: center;
+            border: 1px solid lightskyblue;
+        }
+        #box div img {
+            width: 100%;
+            height: 100%;
+        }
+        ul .select {
+            background: lightgrey;
+        }
+        #box .select {
+            display: block;
+        }
+    </style>
+</head>
+<body>
+<div id="box">
+    <ul>
+        <li class="select">詹姆斯</li>
+        <li>库里</li>
+        <li>杜兰特</li>
+    </ul>
+    <div class="select">
+        <img src="img/zms.png" alt="">
+    </div>
+    <div>
+        <img src="img/kl.jpg" alt="">
+    </div>
+    <div>
+        <img src="img/dlt.jpg" alt="">
+    </div>
+</div>
+</body>
+<script src="../jquery-1.11.3.js"></script>
+<script>
+    $(function () {
+        $("ul li").click(function () {
+            var index=$(this).index();
+            $(this).addClass("select").siblings().removeClass("select");
+            $("#box div").eq(index).addClass("select").siblings().removeClass("select")
+        })
+    });
+</script>
+</html>

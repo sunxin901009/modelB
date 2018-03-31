@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <style type="text/css">
+        *{
+            margin: 0;
+            padding: 0;
+        }
+        #box{
+            position: absolute;
+            left: 0;
+            top: 0;
+            width: 100px;
+            height: 100px;
+            border-radius: 50%;
+            background: lightseagreen;
+            opacity: 1;
+        }
+    </style>
+</head>
+<body>
+<div id="box"></div>
+<script src="utils.js"></script>
+<script src="animate3.js"></script>
+<script>
+    var obox=document.getElementById("box");
+    var target={
+        top:500,
+        left:500,
+        opacity:.5,
+    }
+    var target1={
+        top:0,
+        left:1000,
+        opacity:1,
+    }
+    animate(obox,target,500,function () {
+        animate(obox,target1,500)
+    });
+
+
+</script>
+</body>
+</html>

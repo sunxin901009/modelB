@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <style type="text/css">
+      html{
+          font-size: 100px;
+      }
+        /*1个rem相当于一个HTML font-size的值*/
+        .box{
+            width: 1rem;
+            height: 1rem;
+            background: lightgrey;
+        }
+        .box1{
+            width: 100px;
+            height: 100px;
+            background: lightcoral;
+        }
+    </style>
+</head>
+<body>
+<div class="box"></div>
+<div class="box1"></div>
+<script>
+    //resize:当页面屏幕大小发生改变时，立即发生window的onresize事件；
+    (function() {
+        window.addEventListener("resize",computedSize);
+        function computedSize() {
+            var winW=document.documentElement.clientWidth;
+            document.documentElement.style.fontSize=winW/640*100+"px";
+        }
+        computedSize();
+    })()
+
+
+</script>
+</body>
+</html>

@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<script>
+    var ary = [12, 15, 45, 12, 69, 15, 85];
+//    Array.prototype.distinct = function () {
+//        var obj = {};
+//        for (var i = 0; i < this.length; i++) {
+//            var cur = this[i];
+//            if (obj[cur] == cur) {
+//                this[i] = this[this.length - 1];
+//                this.length--;
+//                i--;
+//                continue;
+//            }
+//            obj[cur] = cur;
+//        }
+//        return this;
+//    }
+//    console.log(ary.distinct());
+    Array.prototype.distinct=function () {
+        var obj={};
+        for (var i = 0; i < this.length; i++) {
+            var cur = this[i];
+            if (obj[cur]===cur){
+                this[i]=this[this.length-1];
+                this.length--;
+                i--;
+                continue;
+            }
+            obj[cur]=cur;
+        }
+        return this;
+    }
+    console.log(ary.distinct());
+</script>
+</body>
+</html>

@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <link rel="stylesheet" href="css/index.css">
+</head>
+<body>
+<div class="box">
+    <a href="add.html" class="link">增加新客户</a>
+    <h2 class="head">
+        <span class="w50">编号</span>
+        <span class="w150">姓名</span>
+        <span class="w50">年龄</span>
+        <span class="w200">电话</span>
+        <span class="w200">地址</span>
+        <span class="w150">操作</span>
+    </h2>
+    <ul class="list" id="list">
+        <!--<li>-->
+        <!--<span class="w50">12</span>-->
+        <!--<span class="w150">xxx</span>-->
+        <!--<span class="w50">277</span>-->
+        <!--<span class="w200">899</span>-->
+        <!--<span class="w200">90</span>-->
+        <!--<span class="w150">-->
+        <!--<a href="">修改</a>-->
+        <!--<a href="">删除</a>-->
+        <!--</span>-->
+        <!--</li>-->
+    </ul>
+</div>
+<script type="text/javascript" src="ajax.js"></script>
+<script type="text/javascript">
+    let oul = document.getElementById("list");
+    function init() {
+        ajax({
+            url: "/getList",
+            type: "get",
+            success: function (data) {
+                bindHtml(data.data)
+            }
+        })
+    }
+    init();
+
+    function bindHtml(data) {
+        let str = ``;
+        for (let i = 0; i < data.length; i++) {
+            let cur = data[i];
+            str += `<li>
+                       <span class="w50">${cur.id}</span>
+                       <span class="w150">${cur.name}</span>
+                       <span class="w50">${cur.age}</span>
+                       <span class="w200">${cur.phone}</span>
+                       <span class="w200">${cur.address}</span>
+                       <span class="w150">
+                           <a href="add.html?id=${cur.id}">修改</a>
+                           <a href="javascript:;" customId="${cur.id}">删除</a>
+                       </span>
+                   </li>`
+        }
+        oul.innerHTML = str;
+
+    }
+
+    //2.删除功能
+    oul.onclick = function (e) {
+        e = e || window.event;
+        if (e.target.innerHTML === "删除") {
+            let id = e.target.getAttribute("customId");
+            //flag点击确定返回true，取消返回false
+            let flag = window.confirm("你确定要删除编号为" + id + "的客户么");
+            if (flag) {
+                ajax({
+                    url: "/removeInfo?id=" + id,
+                    type: "get",
+                    success: function (data) {
+                        if (data.code === 0) {
+                            oul.removeChild(e.target.parentNode.parentNode)
+                        }
+                    }
+                })
+            }
+
+        }
+    }
+</script>
+</body>
+</html>

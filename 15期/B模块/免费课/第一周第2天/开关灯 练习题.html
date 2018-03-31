@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <style type="text/css">
+        html,body{
+            width: 100%;
+            height: 100%;
+        }
+
+    </style>
+</head>
+<body>
+<script>
+    // 练习：
+    //点击 白色--> 红色--> 黄色 --> 绿色--> 白色；
+
+
+//    var obady=document.body;
+//    obady.onclick=function () {
+//        if(obady.style.background===""){
+//            obady.style.background="red";
+//        }else if(obady.style.background==="red") {
+//            obady.style.background = "yellow"
+//        }else if(obady.style.background === "yellow"){
+//            obady.style.background="green"
+//        }else if(obady.style.background==="green"){
+//            obady.style.background="";
+//        }
+//    }
+    var obady=document.body;
+    obady.onclick=function () {
+        switch (obady.style.background){
+            case "":
+                obady.style.background="red";
+                break;
+            case "red":
+                obady.style.background="yellow";
+                break;
+            case "yellow":
+                obady.style.background="green";
+                break;
+            case "green":
+                obady.style.background="";
+        }
+    }
+
+
+</script>
+</body>
+</html>

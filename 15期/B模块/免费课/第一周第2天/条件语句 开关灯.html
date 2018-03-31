@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <style type="text/css">
+        html,body{
+            width: 100%;
+            height: 100%;
+        }
+    </style>
+</head>
+
+<body>
+<script>
+//    console.log(document.body);
+   var oBody = document.body;
+   oBody.onclick = function () {
+        if(oBody.style.background===""){
+            oBody.style.background="black";
+        }else if (oBody.style.background==="black"){
+            oBody.style.background="";
+        }
+    }
+</script>
+</body>
+</html>

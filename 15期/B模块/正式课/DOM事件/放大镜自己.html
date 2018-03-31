@@ -1,0 +1,109 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <style type="text/css">
+        *{
+            margin: 0;
+            padding: 0;
+        }
+        .box{
+            position: relative;
+            width: 350px;
+            height: 350px;
+            border: 1px solid lightskyblue;
+            margin-top: 30px;
+            margin-left: 50px;
+            float: left;
+        }
+        .box img{
+            width: 100%;
+            height: 100%;
+        }
+        .box #mark{
+            width: 175px;
+            height: 175px;
+            position: absolute;
+            left: 0;
+            top: 0;
+            background: rgba(0,0,0,.3);
+            cursor: move;
+        }
+        .bigBox{
+            display: none;
+            position: relative;
+            width: 350px;
+            height: 350px;
+            border: 1px solid lightskyblue;
+            margin-top: 30px;
+            margin-left: 50px;
+            float: left;
+            overflow: hidden;
+        }
+        .bigBox img{
+            position: absolute;
+            left: 0;
+            top: 0;
+            width: 700px;
+            height: 700px;
+        }
+
+    </style>
+</head>
+<body>
+<div class="box" id="box">
+    <img src="img/iphone.jpg" alt="">
+</div>
+<div class="bigBox" id="bigBox">
+    <img src="img/iphone_big.jpg" alt="">
+</div>
+<script>
+    var obox=document.getElementById("box"),
+        bigBox=document.getElementById("bigBox"),
+        oimg=bigBox.getElementsByTagName("img")[0],
+        mark,
+        l=obox.offsetLeft,
+        t=obox.offsetTop;
+    obox.onmouseenter=function () {
+        var newMark=document.createElement("div");
+        newMark.id="mark";
+        this.appendChild(newMark);
+        mark=document.getElementById("mark");
+        bigBox.style.display="block";
+    };
+    obox.onmousemove=function (e) {
+        e=e||window.event;
+        computed(e)
+    };
+    function computed(e) {
+        var minL=0,
+            maxL=obox.offsetWidth/2,
+            left=e.clientX-l-mark.offsetWidth/2,
+            top=e.clientY-t-mark.offsetHeight/2;
+        if (left<minL){
+            left=minL
+        }else if(left>maxL){
+            left=maxL
+        }
+        if (top<minL){
+            top=minL
+        }else if(top>maxL){
+            top=maxL
+        }
+        mark.style.left=left+"px";
+        mark.style.top=top+"px";
+        oimg.style.left=-2*left+"px";
+        oimg.style.top=-2*top+"px";
+    }
+    obox.onmouseleave=function () {
+        if (mark){
+            this.removeChild(mark)
+        }
+        bigBox.style.display="none";
+    }
+
+
+</script>
+</body>
+</html>

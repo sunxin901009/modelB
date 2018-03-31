@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<script>
+    var ary = [12, 45, 11, 36, 89, 57, 66];
+    var newAry = [];
+    newAry.push(ary[0]);
+    for (var i = 1; i < ary.length; i++) {
+        var cur = ary[i];
+        for (var j = newAry.length - 1; j >= 0;) {
+            if (cur < newAry[j]) {
+                j--;
+                if (j === -1) {
+                    newAry.unshift(cur)
+                }
+            } else {
+                newAry.splice(j+1,0,cur);
+                break;
+            }
+        }
+    }
+    console.log(newAry);
+</script>
+</body>
+</html>

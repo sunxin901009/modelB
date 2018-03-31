@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<script>
+    function getCss(a,b) {
+        var tiger;
+        if ("getComputedStyle" in window){
+            tiger=getComputedStyle(a)[b];
+        }else {
+            if (b=="opacity"){
+                var monk=a.currentStyle["filter"];
+                var reg=/(\d+)(\.\d+)?/;
+                tiger=reg.exec(monk)/100;
+            }else{
+                tiger=a.currentStyle[b];
+            }
+        }
+        return parseFloat(tiger);
+    }
+</script>
+</body>
+</html>

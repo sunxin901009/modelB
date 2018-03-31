@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <style type="text/css">
+        #box {
+            width: 150px;
+            height: 50px;
+            line-height: 50px;
+            text-align: center;
+            margin: 30px auto;
+            border: 3px solid lightseagreen;
+            border-radius: 8px;
+        }
+    </style>
+</head>
+<body>
+<div id="box"></div>
+<script>
+    var timer = document.getElementById("box");
+    var garteTime = new Date("2017/12/22 20:52:30");
+    function add(value) {
+        return value < 10 ? "0" + value : value;
+    }
+    function fn() {
+        var nowTime = new Date();
+        var diffTime = garteTime - nowTime;
+        if (diffTime <= 0) {
+            clearInterval(a);
+            return;
+        }
+        var hour = Math.floor(diffTime / (1000 * 60 * 60));
+        var min = Math.floor((diffTime - hour * 1000 * 60 * 60) / (1000 * 60));
+        var sec = Math.floor((diffTime - hour * 1000 * 60 * 60 - min * 1000 * 60) / 1000);
+        timer.innerHTML = add(hour) + ":" + add(min) + ":" + add(sec);
+    }
+    fn();
+    var a = setInterval(fn, 1000)
+</script>
+</body>
+</html>

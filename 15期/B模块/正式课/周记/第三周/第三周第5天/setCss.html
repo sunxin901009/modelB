@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<script>
+//    function setCss(curEle,attr,value) {
+//        //解决IE8及以下"opacity"兼容问题
+//        if (attr==="opacity"){
+//            curEle.style["opacity"]=value;
+//            curEle.style["filter"]="alpha(opacity="+value*100+")"
+//        }else {
+//            //加单位 如果传的是纯数字
+//            var reg=/^(width|height|((margin|padding)?(top|right|bottom|left)?))/i;
+//            var tiget=reg.test(attr);
+//            if (tiger && !isNaN(value)){
+//                value=value+"px";
+//            }
+//                curEle.style[attr]=value;
+//        }
+//    }
+//    function setCss(curEle,attr,value) {
+//        //解IE决兼容问题"opacity"
+//        if (attr==="opacity"){
+//            curEle.style["opacity"]=value;
+//            curEle.style["filter"]="alpha(opacity="+value+")";
+//        }else{
+//            //加单位
+//            var reg=/^((width|height)|((margin|padding)?(top|right|bottom|left)?))$/i;
+//            if (reg.test(attr) && !isNaN(value)){
+//                value=value+"px";
+//            }
+//            curEle.style[attr]=value;
+//        }
+//    }
+//    function getCss(curEle,attr,value) {
+//        //解决兼容性问题
+//        if (attr==="opacity"){
+//            curEle.style["opacity"]=value;
+//            curEle.style["filter"]="alpha(opacity=("+value*100+"))"
+//        }else{
+//            //加单位
+//            var reg=/^((width|leight)|((margin|padding)?(top|right|bottom|left)?))$/i;
+//            if (reg.test(attr) && !isNaN(value)){
+//                value=value+"px";
+//            }
+//            curEle.style[attr]=value;
+//        }
+//    }
+    function getCss(curEle,attr) {
+        var tiger;
+        if ("getComputedStyle" in window){
+            tiger=getComputedStyle(curEle)[attr];
+        }else {
+            if (attr==="opacity"){
+                var reg=/^alpha\(opacity=(\d+(\.\d+))?\)$/g;
+                var monk=curEle.currentStyle["filter"]//alpha(opacity=xx)
+                tiger=reg.exec(monk)[0]/100;
+            }
+            tiger=curEle.currentStyle[attr]
+        }
+        return parseFloat(tiger);
+    }
+    function setGroupCss(curEle,options) {
+        if (typeof options==="object"){
+            for (var key in options){
+                setCss(curEle,key,options[key])
+            }
+        }
+    }
+
+</script>
+</body>
+</html>

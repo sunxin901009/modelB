@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<script>
+//    function average() {
+//        var ary = [];
+//        for (var i = 0; i < arguments.length; i++) {
+//            var cur = arguments[i];
+//            ary.push(cur);
+//        }
+//        ary.pop();
+//        ary.shift();
+//        var ave = parseFloat((eval(ary.join("+")) / ary.length).toFixed(2));
+//        return ave;
+//    }
+//    var b=average(10, 11.5, 12, 13.6, 14, 15, 16)
+//    console.log(b);
+    function average() {
+        [].sort.call(arguments,function (a,b) {
+            return a-b
+        });
+        [].pop.call(arguments);
+        [].shift.call(arguments);
+        var ave=parseFloat(((eval([].join.call(arguments,"+"))/arguments.length).toFixed(2)))
+        return ave;
+    }
+    var b=average(10, 11.5, 12, 13.6, 14, 15, 16)
+console.log(b);
+</script>
+</body>
+</html>

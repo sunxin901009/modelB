@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <style type="text/css">
+        *{
+            margin: 0;
+            padding: 0;
+        }
+        ul{
+            list-style: none;
+        }
+        a{
+            text-decoration: none;
+        }
+        .container{
+            position: relative;
+            width: 700px;
+            height: 300px;
+            margin: 30px auto;
+        }
+        .swiper{
+            position: relative;
+            width: 700px;
+            height: 300px;
+            box-shadow: 2px 2px 10px lightseagreen;
+            background: url(images/default.gif) no-repeat center;
+        }
+        .swiper img{
+            display: none;
+            width: 700px;
+            height: 300px;
+            position: absolute;
+            left: 0;
+            top: 0;
+        }
+        .focus{
+            position: absolute;
+            bottom: 10px;
+            left: 50%;
+            margin-left: -62.5px;
+            width: 125px;
+            height: 20px;
+            border-radius: 10px;
+            background: rgba(0,0,0,.3);
+            overflow: hidden;
+        }
+        .focus li{
+            width: 15px;
+            height: 15px;
+            border-radius: 50%;
+            float: left;
+            margin: 3px 5px;
+            background: white;
+        }
+        .focus li.select{
+            background: lightcoral;
+        }
+        .container a{
+            display: none;
+            width: 30px;
+            height: 40px;
+            line-height: 40px;
+            background: rgba(0,0,0,.4);
+            position: absolute;
+            top: 50%;
+            margin-top: -20px;
+            font-size: 25px;
+            color: white;
+            text-align: center;
+        }
+        .container #left{
+            left: 0;
+        }
+        .container #right{
+            right: 0;
+        }
+    </style>
+</head>
+<body>
+<div class="container" id="container">
+    <div class="swiper" id="swiper">
+        <!--<img src="images/1.jpg" alt="">-->
+    </div>
+    <ul class="focus" id="focus">
+        <!--<li class="select"></li>-->
+        <!--<li></li>-->
+        <!--<li></li>-->
+        <!--<li></li>-->
+        <!--<li></li>-->
+    </ul>
+    <a href="javascript:;" id="left"> < </a>
+    <a href="javascript:;" id="right"> > </a>
+</div>
+<script src="js/jquery-1.11.3.js"></script>
+<script src="js/0228index.js"></script>
+</body>
+</html>

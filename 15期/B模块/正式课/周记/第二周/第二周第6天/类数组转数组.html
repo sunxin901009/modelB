@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<script>
+    function toArray(like) {
+        var ary=[];
+        try{
+            ary=Array.prototype.slice.call(like)
+        }catch(k){
+            for (var i = 0; i < like.length; i++) {
+                ary.push(ary[i]);
+            }
+        }
+        return ary;
+    }
+    function toJSON(air) {
+        return "JSON" in window?JSON.parse(air):eval("("+air+")");
+    }
+</script>
+</body>
+</html>

@@ -1,0 +1,111 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <style type="text/css">
+        * {
+            margin: 0;
+            padding: 0;
+        }
+
+        ul {
+            list-style: none;
+        }
+
+        .container {
+            width: 400px;
+            margin: 30px auto;
+        }
+
+        input {
+            width: 400px;
+            height: 30px;
+            font-size: 18px;
+        }
+
+        ul {
+            display: none;
+            width: 400px;
+            height: 120px;
+            border: 1px solid lightskyblue;
+        }
+
+        ul li {
+            height: 30px;
+            line-height: 30px;
+        }
+
+        /*ul li:hover {*/
+            /*background: lightgrey;*/
+        /*}*/
+
+        ul li.select {
+            background: lightgrey;
+        }
+    </style>
+</head>
+<body>
+<div class="container">
+    <input type="text" value="淘宝网" id="inp">
+    <ul id="ul">
+        <li>淘宝网首页</li>
+        <li>淘宝网店开店流程</li>
+        <li>淘宝网首页官网</li>
+        <li>淘宝网店装修教程</li>
+    </ul>
+</div>
+<script>
+    var inp = document.getElementById("inp"),
+        oul = document.getElementById("ul"),
+        olis = oul.getElementsByTagName("li");
+    inp.onfocus = function () {
+        oul.style.display = "block"
+    }
+    document.body.onclick = function (e) {
+        e = e || window.event;
+        e.target = e.target || e.srcElement;
+        if (e.target === inp) {
+            return;
+        }
+        if (e.target.nodeName === "LI") {
+            inp.value = e.target.innerHTML;
+            oul.style.display = "none";
+        }
+        oul.style.display = "none";
+    };
+    var index = 0,
+        flag = true;
+    document.body.onkeydown = function (e) {
+        e = e || window.event;
+        e.target = e.target || e.srcElement;
+        if (e.keyCode === 38) {
+            index === 0 ? index = olis.length - 1 : index--;
+            change(index)
+        } else if (e.keyCode === 40) {
+            if (flag) {
+                flag = false;
+                change(index);
+                return
+            }
+            index === olis.length - 1 ? index = 0 : index++;
+            change(index)
+        }
+    };
+    function change(index) {
+        for (var i = 0; i < olis.length; i++) {
+            olis[i].className = ""
+        }
+        olis[index].className = "select";
+    }
+
+   oul.onmouseover=function (e) {
+       for (var i = 0; i < olis.length; i++) {
+           olis[i].className = ""
+       }
+       e.target.className = "select";
+   }
+
+</script>
+</body>
+</html>

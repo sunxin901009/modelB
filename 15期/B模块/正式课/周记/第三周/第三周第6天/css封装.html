@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <style type="text/css">
+        #box{
+            width: 200px;
+            height: 300px;
+            opacity: .7;
+            background: red;
+        }
+    </style>
+</head>
+<body>
+<div id="box"></div>
+<script>
+    var obox=document.getElementById("box");
+    function getCss(curEle,attr) {
+        if ("getComputedStyle" in window){
+            return getComputedStyle(curEle)[attr];
+        }else{
+            if (attr==="opacity"){
+                var tiger=curEle.currentStyle["filter"];
+                var reg=/alpha\(opacity=(\d+(\.\d+)?)\)/g;
+                return reg.exec(tiger)[0]/100
+            }
+            return curEle.currentStyle[attr];
+        }
+    }
+    function setCss(curEle,attr,value) {
+        if (attr==="opacity"){
+            curEle.style["filter"]="alpha(opacity="+value*100+")";
+        }
+            var reg=/^(width|height|((margin|padding)?(top|right|bottom|left))?)$/i;
+            if (reg.test(attr) && !isNaN(value)){
+                value=value+"px";
+            }
+            curEle.style[attr]=value;
+    }
+    //setCss(obox,"width",500)
+    function setGroupCss(curEle,tiger) {
+        if (typeof tiger==="object"){
+            for(var key in tiger){
+                setCss(curEle,[key],tiger[key])
+            }
+        }
+    }
+    //setGroupCss(obox,{width:100,height:200,opacity:0.6})
+    function css(curEle,attr,value) {
+        curEle=arguments[0];
+        attr=arguments[1];
+        value=arguments[2];
+        if (arguments.length===3){
+            setCss(curEle,attr,value)
+        }else {
+            if (arguments.length===2 && typeof attr==="object"){
+               setGroupCss(curEle,attr);
+            }
+            return getCss(curEle,attr);
+        }
+    }
+    css(obox, {"width":600,"height":200,"opacity":.2});
+</script>
+</body>
+</html>

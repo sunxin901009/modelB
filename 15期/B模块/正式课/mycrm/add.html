@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <link rel="stylesheet" href="css/index.css">
+</head>
+<body>
+<div class="box2">
+    <div>
+        <span>姓名</span>
+        <input type="text" id="userName">
+    </div>
+    <div>
+        <span>年龄</span>
+        <input type="text" id="userAge">
+    </div>
+    <div>
+        <span>电话</span>
+        <input type="text" id="userPhone">
+    </div>
+    <div>
+        <span>地址</span>
+        <input type="text" id="userAddress">
+    </div>
+    <div class="sumbit" id="submit">提交</div>
+</div>
+<script type="text/javascript" src="ajax.js"></script>
+<script type="text/javascript">
+    let userName = document.getElementById("userName"),
+        userAge = document.getElementById("userAge"),
+        userPhone = document.getElementById("userPhone"),
+        userAddress = document.getElementById("userAddress"),
+        submit = document.getElementById("submit"),
+        urlAll = window.location.href,
+        index = urlAll.indexOf("="),
+        id = urlAll.substr(index + 1, 1);
+    if (index >= 0) {
+        ajax({
+            url:"/getInfo?id="+id,
+            type:"get",
+            success:function (data) {
+                let curData=data.data;
+                if (data.code===0){
+                    userName.value=curData.name;
+                    userAge.value=curData.age;
+                    userPhone.value=curData.phone;
+                    userAddress.value=curData.address;
+                }
+            }
+        })
+    }
+    submit.onclick=function () {
+        if (index>=0){
+            ajax({
+                url:"/updateInfo",
+                type:"post",
+                data:{
+                    id:id,
+                    name:userName.value,
+                    age:userAge.value,
+                    phone:userPhone.value,
+                    address:userAddress.value
+                },
+                success:function (data) {
+                    if(data.code===0){
+                        window.location.href="index.html"
+                    }
+                }
+            })
+        }else{
+            ajax({
+                url:"/addInfo",
+                type:"post",
+                data:{
+                    name:userName.value,
+                    age:userAge.value,
+                    phone:userPhone.value,
+                    address:userAddress.value
+                },
+                success:function (data) {
+                    if (data.code===0){
+                        window.location.href="index.html"
+                    }
+                }
+            })
+        }
+    }
+
+</script>
+
+
+</body>
+</html>

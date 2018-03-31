@@ -1,0 +1,107 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <style type="text/css">
+        .inputbox{
+            width: 300px;
+            height: 30px;
+            margin: 20px;
+            position: relative;
+        }
+        .inputbox input,.inputbox .place{
+            width: 300px;
+            height: 20px;
+            position: absolute;
+            left: 0;
+            padding: 5px;
+            cursor: text;
+        }
+        .inputbox .place{
+            padding-left: 10px;
+        }
+    </style>
+</head>
+<body>
+<div class="inputbox">
+<input type="text" data-place="你瞅啥！">
+</div>
+<div class="inputbox">
+<input type="password" data-place="瞅你咋的！">
+</div>
+<div class="inputbox">
+<input type="text" data-place="再瞅一个试试！">
+</div>
+<script>
+    var inputList=document.getElementsByTagName("input");
+    var ary=[];
+    for (var i = 0; i < inputList.length; i++) {
+        var cur=inputList[i];
+        if(cur.getAttribute("data-place")){
+            ary.push(cur)
+        }
+    }
+    if (!/MSIE|Trident/.test(navigator.userAgent)){
+        for (var k = 0; k < ary.length; k++) {
+            ary[k].placeholder=ary[k].getAttribute("data-place")
+        }
+        }else{
+        for (var j = 0; j < ary.length; j++) {
+            var curInput = ary[j];
+            var curSpan=document.createElement("span");
+            curSpan.innerText=curInput.getAttribute("data-place");
+            curSpan.className="place";
+            curInput.parentNode.appendChild(curSpan);
+            curInput.span=curSpan;
+            curInput.index=j;
+            curInput.onkeydown=curInput.onkeyup=function () {
+                this.span.style.display=this.value.length>0?"none":"block";
+            }
+        }
+
+        }
+
+
+
+
+
+
+
+    //自定义一个行内属性  data-place
+    // var inputList=document.getElementsByTagName("input");
+    // var inputbox=document.getElementsByTagName("div");
+    // var ary=[];
+    // //遍历页面中所以包含data-place行内属性的input，并且data-place带有值；
+    // for (var i = 0; i < inputList.length; i++) {
+    //     var item = inputList[i];
+    //     if(item.getAttribute("data-place")){
+    //         ary.push(item)
+    //     }
+    // }
+    // if(!/(MSIE|Trident)/.test(navigator.userAgent)){
+    //     for(var i=0;i<ary.length;i++){
+    //         var  cur = ary[i];
+    //         cur.placeholder = cur.getAttribute("data-place");
+    //     }
+    // }else{
+    //     var spanList=document.getElementsByTagName("span");
+    //     for (var i = 0; i < ary.length; i++) {
+    //         var cur = ary[i];
+    //         ary[i].index=i;
+    //         var span=document.createElement("span");
+    //         span.innerHTML=cur.getAttribute("data-place");
+    //         inputbox[i].appendChild(span);
+    //         inputbox[i].style.position="relative";
+    //         span.style.position="absolute";
+    //         span.style.left=0+"px ";
+    //         cur.onkeydown=cur.onkeyup=function () {
+    //             spanList[this.index].style.display=this.value.length>0?"none":"block"
+    //         };
+    //
+    //     }
+    // }
+
+</script>
+</body>
+</html>

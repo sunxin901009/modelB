@@ -1,0 +1,20 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<script src="ajax.js"></script>
+<script>
+    ajax({url:"./pruduct.json"}).then((val)=>{
+        console.log(JSON.parse(val));
+    },(err)=>{
+        console.log(err);})
+function fn() {
+    
+}
+
+</script>
+</body>
+</html>

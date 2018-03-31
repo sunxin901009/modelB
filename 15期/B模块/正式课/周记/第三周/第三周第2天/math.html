@@ -1,0 +1,20 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<script>
+    var  str = "2018-01-10 12:50:00";
+    var  ary = ["年","月","日","时","分","秒"];
+    var tiger=str.match(/\d+/g);
+    console.log(tiger);
+    var newStr="";
+    for (var i = 0; i < ary.length; i++) {
+        newStr+=tiger[i]+ary[i];
+    }
+    console.log(newStr);
+</script>
+</body>
+</html>

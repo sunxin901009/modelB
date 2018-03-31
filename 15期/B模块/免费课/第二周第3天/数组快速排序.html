@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<script>
+    var ary = [11,23,56,12,89,58,44,75];
+    //函数形参写的目的
+    function quick(ary) {
+        if (ary.length<1){
+            return ary;
+        }
+        var center = Math.floor(ary.length/2);
+        var centerValue=ary.splice(center,1)[0];
+        var left=[];
+        var right=[];
+        for (var i = 0; i < ary.length; i++) {
+            var cur = ary[i];
+            if (ary[i]<centerValue){
+                left.push(cur);
+            }
+            if (ary[i]>centerValue){
+                right.push(cur);
+            }
+        }
+        return quick(left).concat(centerValue,quick(right))
+    }
+    console.log(quick(ary));
+</script>
+</body>
+</html>

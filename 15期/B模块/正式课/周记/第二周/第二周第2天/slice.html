@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<script>
+    //    var ary = [1, 2, 3, 4, 5]
+    // 课下实现slice方法；
+    // 没有参数
+    // 一个参数  参数正负  以及和数组长度的比较
+    // 两个参数   参数正负
+    Array.prototype.newSlice=function (a,b) {
+        var ary=[];
+//        if (a===undefined && b===undefined){
+//            return this
+//        }
+        a==undefined&&b==undefined? ary=this:null;
+//        if (a>this.length){
+//         a=this.length
+//        }
+        a>this.length?a=this.length:null;
+//        if (a<0 && a>-this.length){
+//            a=a+this.length
+//        }
+        a<0&&a>-this.length?a=a+this.length:null;
+//        if (a<-this.length){
+//            a=0
+//        }
+        a<-this.length?a=0:null;
+//        if (a>=b){
+//            return ary
+//        }
+        a>=b?ary=[]:null;
+//        if (b>0 && b<this.length){
+//            this.length=b;
+//        }
+        b>0&&b<this.length?this.length=b:null;
+//        if (b>-this.length && b<0){
+//            this.length=b+this.length
+//        }
+        b>-this.length&&b<0?this.length=b+this.length:null;
+//        if (b<-this.length){
+//            this.length=0
+//        }
+        b<-this.length?this.length=0:null;
+        //debugger
+        for (var i = a; i < this.length; i++) {
+            ary.push(this[i]);
+        }
+        return ary;
+    }
+    console.log(aryy.newSlice(8,7));
+</script>
+</body>
+</html>

@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <style type="text/css">
+        #box{
+            height: 300px;
+            width: 300px;
+            opacity: 0.8;
+            background: red;
+        }
+    </style>
+</head>
+<body>
+<div id="box">
+
+</div>
+<script>
+    var obox=document.getElementById("box");
+ //   function getCss(curEle,attr) {
+//        var val;
+//        if ("getComputedStyle" in window){
+//            val=getComputedStyle(curEle)[attr];
+//        }else{
+//            //解决IE8及以下"opacity"
+//            if (attr==="opacity"){
+//                var tiger=curEle.currentStyle["filter"];
+//                var reg=/^alpha\(opacity=(\d+(\.\d+)?)\)$/g
+//                val=reg.exec(tiger)[0]/100;
+//            }
+//            val=curEle.currentStyle[attr];
+//        }
+//        val=parseFloat(val);
+//        return val;
+//    }
+//    console.log(getCss(obox, "width"));
+ //   }
+    function getCss(curEle,attr) {
+        var val;
+        if ("getComputedStyle" in window){
+            val=getComputedStyle(curEle)[attr]
+        }else{
+            //解决IE8及以下"opacity"兼容问题
+            if (attr==="opacity"){
+                var tiger=curEle.currentStyle["filter"];
+                var reg=/^alpha\(opacity=(\d+(\.\d+)?)\)$/g;
+                val=reg.exec(tiger)[0]/100;
+            }
+            val=curEle.currentStyle[attr];
+        }
+        return parseFloat(val);
+    }
+    console.log(getCss(obox, "width"));
+</script>
+</body>
+</html>
